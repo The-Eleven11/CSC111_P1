@@ -42,6 +42,7 @@ class Event:
     - prev: Event object representing the previous event in the game, None if this is the first game event
     """
 
+
     # NOTES:
     # Complete this class EXACTLY as specified, with ALL of the above attributes.
     # Do NOT add any new attributes, or modify the names or types of the above attributes.
@@ -49,7 +50,11 @@ class Event:
     # set of attributes, you can do that separately in the project1 folder. This class is part of
     # Exercise 1 and will be auto-graded.
 
-    # TODO: Add attributes below based on the provided descriptions above. Use the specified datatypes.
+    id_num : int
+    description : str
+    next_command : str
+    next : Event
+    prev : Event
 
 
 class EventList:
@@ -57,7 +62,8 @@ class EventList:
     A linked list of game events.
 
     Instance Attributes:
-        - # TODO add descriptions of instance attributes here
+        first is Event object or None
+        last is Event object or None
 
     Representation Invariants:
         - # TODO add any appropriate representation invariants, if needed
@@ -83,7 +89,7 @@ class EventList:
     def is_empty(self) -> bool:
         """Return whether this event list is empty."""
 
-        # TODO: Your code below
+        return self.first is None
 
     def add_event(self, event: Event, command: Optional[str] = None) -> None:
         """Add the given new event to the end of this event list.
@@ -92,7 +98,17 @@ class EventList:
         """
         # Hint: You should update the previous node's <next_command> as needed
 
-        # TODO: Your code below
+        if self.is_empty():
+            self.first = event
+            event.prev = None
+            event.next = None
+        else:
+            event.prev = self.last
+            self.last.next = event
+            self.last.next_command = command
+
+        self.last = event
+
 
     def remove_last_event(self) -> None:
         """Remove the last event from this event list.
@@ -100,12 +116,22 @@ class EventList:
 
         # Hint: The <next_command> and <next> attributes for the new last event should be updated as needed
 
-        # TODO: Your code below
+        new_last = self.last.prev
+        new_last.next = None
+        new_last.next_command = None
+        self.last = new_last
 
     def get_id_log(self) -> list[int]:
         """Return a list of all location IDs visited for each event in this list, in sequence."""
 
-        # TODO: Your code below
+        id_log = []
+        curr = self.first
+
+        while curr is not None:
+            id_log.append(curr.id_num)
+            curr = curr.next
+
+        return id_log
 
     # Note: You may add other methods to this class as needed but DO NOT CHANGE THE SPECIFICATION OF ANY OF THE ABOVE
 
