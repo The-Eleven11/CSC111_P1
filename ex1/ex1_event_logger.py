@@ -50,11 +50,11 @@ class Event:
     # set of attributes, you can do that separately in the project1 folder. This class is part of
     # Exercise 1 and will be auto-graded.
 
-    id_num : int
-    description : str
-    next_command : str
-    next : Event
-    prev : Event
+    id_num: int
+    description: str
+    next_command: Optional[str] = None
+    next: Optional[Event] = None
+    prev: Optional[Event] = None
 
 
 class EventList:
@@ -62,11 +62,12 @@ class EventList:
     A linked list of game events.
 
     Instance Attributes:
-        first is Event object or None
-        last is Event object or None
+    - first: the first Event of the EventList, leave None if EventList is empty
+    - last: the last Event of the EventList, leave None if EventList is empty
 
     Representation Invariants:
-        - # TODO add any appropriate representation invariants, if needed
+    - not self.is_empty() or ((self.first is None) and (self.last is None))
+    - (not self.first is None or self.last is None) and (not self.last is None or self.first is None)
     """
     first: Optional[Event]
     last: Optional[Event]
@@ -115,11 +116,13 @@ class EventList:
         If the list is empty, do nothing."""
 
         # Hint: The <next_command> and <next> attributes for the new last event should be updated as needed
-
-        new_last = self.last.prev
-        new_last.next = None
-        new_last.next_command = None
-        self.last = new_last
+        if self.last is None:
+            return
+        else:
+            new_last = self.last.prev
+            new_last.next = None
+            new_last.next_command = None
+            self.last = new_last
 
     def get_id_log(self) -> list[int]:
         """Return a list of all location IDs visited for each event in this list, in sequence."""
