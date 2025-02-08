@@ -26,9 +26,6 @@ from dataclasses import dataclass
 from typing import Optional
 
 
-# TODO: Copy/paste your ex1_event_logger code below, and modify it if needed to fit your game
-
-
 @dataclass
 class Event:
     """
@@ -42,13 +39,19 @@ class Event:
     - prev: Event object representing the previous event in the game, None if this is the first game event
     """
 
-    # NOTES:
-    # This is proj1_event_logger (separate from the ex1 file). In this file, you may add new attributes/methods,
-    # or modify the names or types of provided attributes/methods, as needed for your game.
-    # If you want to create a special type of Event for your game that requires a different
-    # set of attributes, you can create new classes using inheritance, as well.
 
-    # TODO: Add attributes below based on the provided descriptions above.
+    # NOTES:
+    # Complete this class EXACTLY as specified, with ALL of the above attributes.
+    # Do NOT add any new attributes, or modify the names or types of the above attributes.
+    # If you want to create a special type of Event for your game that requires a different
+    # set of attributes, you can do that separately in the project1 folder. This class is part of
+    # Exercise 1 and will be auto-graded.
+
+    id_num : int
+    description : str
+    next_command : str
+    next : Event
+    prev : Event
 
 
 class EventList:
@@ -56,7 +59,8 @@ class EventList:
     A linked list of game events.
 
     Instance Attributes:
-        - # TODO add descriptions of instance attributes here
+        first is Event object or None
+        last is Event object or None
 
     Representation Invariants:
         - # TODO add any appropriate representation invariants, if needed
@@ -77,20 +81,31 @@ class EventList:
             print(f"Location: {curr.id_num}, Command: {curr.next_command}")
             curr = curr.next
 
-    # TODO: Complete the methods below, based on the given descriptions.
+    # TODO: Complete the methods below, based on the given descriptions. Do NOT change any of their specification.
+    #  That is, the function headers (parameters, return type, etc.) must NOT be changed.
     def is_empty(self) -> bool:
         """Return whether this event list is empty."""
 
-        # TODO: Your code below
+        return self.first is None
 
-    def add_event(self, event: Event, command: str = None) -> None:
+    def add_event(self, event: Event, command: Optional[str] = None) -> None:
         """Add the given new event to the end of this event list.
         The given command is the command which was used to reach this new event, or None if this is the first
         event in the game.
         """
         # Hint: You should update the previous node's <next_command> as needed
 
-        # TODO: Your code below
+        if self.is_empty():
+            self.first = event
+            event.prev = None
+            event.next = None
+        else:
+            event.prev = self.last
+            self.last.next = event
+            self.last.next_command = command
+
+        self.last = event
+
 
     def remove_last_event(self) -> None:
         """Remove the last event from this event list.
@@ -98,14 +113,24 @@ class EventList:
 
         # Hint: The <next_command> and <next> attributes for the new last event should be updated as needed
 
-        # TODO: Your code below
+        new_last = self.last.prev
+        new_last.next = None
+        new_last.next_command = None
+        self.last = new_last
 
     def get_id_log(self) -> list[int]:
         """Return a list of all location IDs visited for each event in this list, in sequence."""
 
-        # TODO: Your code below
+        id_log = []
+        curr = self.first
 
-    # Note: You may add other methods to this class as needed
+        while curr is not None:
+            id_log.append(curr.id_num)
+            curr = curr.next
+
+        return id_log
+
+    # Note: You may add other methods to this class as needed but DO NOT CHANGE THE SPECIFICATION OF ANY OF THE ABOVE
 
 
 if __name__ == "__main__":
