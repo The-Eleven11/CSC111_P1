@@ -84,7 +84,7 @@ class EventList:
             print(f"Location: {curr.id_num}, Command: {curr.next_command}")
             curr = curr.next
 
-    # TODO: Complete the methods below, based on the given descriptions. Do NOT change any of their specification.
+    # Complete the methods below, based on the given descriptions. Do NOT change any of their specification.
     #  That is, the function headers (parameters, return type, etc.) must NOT be changed.
     def is_empty(self) -> bool:
         """Return whether this event list is empty."""
@@ -105,9 +105,7 @@ class EventList:
         else:
             event.prev = self.last
             self.last.next = event
-            # self.last.next_command = command
-            event.next_command = command
-
+            self.last.next_command = command
         self.last = event
 
     def remove_last_event(self) -> None:
@@ -139,7 +137,6 @@ class EventList:
 
 
 if __name__ == "__main__":
-    pass
     # When you are ready to check your work with python_ta, uncomment the following lines.
     # (Delete the "#" and space before each line.)
     # IMPORTANT: keep this code indented inside the "if __name__ == '__main__'" block
