@@ -125,11 +125,11 @@ class AdventureGameSimulation:
         # Hint: self._game.get_location() gives you back the current location
         initial_location = self._game.get_location()
         initial_event = Event(
-            id_num = initial_location.id_num,
-            description = initial_location.description,
-            next_command = None,
-            next = None,
-            prev = None
+            id_num=initial_location.id_num,
+            description=initial_location.description,
+            next_command=None,
+            next=None,
+            prev=None
         )
         self._events.add_event(initial_event)
         # Generate the remaining events based on the commands and initial location
@@ -152,11 +152,11 @@ class AdventureGameSimulation:
             next_location_id = current_location.available_commands[command]
             next_location = self._game.get_location(next_location_id)
             next_event = Event(
-                id_num = next_location.id_num,
-                description = next_location.description,
-                next_command = command,
-                next = None,
-                prev = None
+                id_num=next_location.id_num,
+                description=next_location.description,
+                next_command=command,
+                next=None,
+                prev=None
             )
             self._events.add_event(next_event, command)
             current_location = next_location
@@ -196,12 +196,11 @@ class AdventureGameSimulation:
 
 
 if __name__ == "__main__":
-    pass
     # When you are ready to check your work with python_ta, uncomment the following lines.
     # (Delete the "#" and space before each line.)
     # IMPORTANT: keep this code indented inside the "if __name__ == '__main__'" block
-    # import python_ta
-    # python_ta.check_all(config={
-    #     'max-line-length': 120,
-    #     'disable': ['R1705', 'E9998', 'E9999']
-    # })
+    import python_ta
+    python_ta.check_all(config={
+        'max-line-length': 120,
+        'disable': ['R1705', 'E9998', 'E9999']
+    })

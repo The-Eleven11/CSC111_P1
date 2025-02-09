@@ -36,13 +36,13 @@ class AdventureGame:
     """A text adventure game class storing all location, item and map data.
 
     Instance Attributes:
-    - _locations: every locations of game, the map
+    - _locations: every location of game, the map
     - _items: conditional items that is needed to access this area
-    - current_location_id: the location you are in in this step
-    - ongoing: whether this game is continue
+    - current_location_id: the location you are in this step
+    - ongoing: whether this game is continuing
     - player: the information of player in this step
     Representation Invariants:
-    - # TODO add any appropriate representation invariants as needed
+    - self.current_location_id > 0
     """
 
     # Private Instance Attributes (do NOT remove these two attributes):
@@ -97,7 +97,6 @@ class AdventureGame:
             locations[loc_data['id']] = location_obj
 
         items = []
-        # TODO: Add Item objects to the items list; your code should be structured similarly to the loop above
         # YOUR CODE BELOW
         for loc_data in data['items']:
             item_obj = Item(loc_data['name'], loc_data['target_points'])
@@ -109,8 +108,6 @@ class AdventureGame:
         """Return Location object associated with the provided location ID.
         If no ID is provided, return the Location object associated with the current location.
         """
-
-        # TODO: Complete this method as specified
         # YOUR CODE BELOW
         if loc_id is None:
             return self._locations[self.current_location_id]
@@ -132,11 +129,11 @@ if __name__ == "__main__":
     # When you are ready to check your work with python_ta, uncomment the following lines.
     # (Delete the "#" and space before each line.)
     # IMPORTANT: keep this code indented inside the "if __name__ == '__main__'" block
-    # import python_ta
-    # python_ta.check_all(config={
-    #     'max-line-length': 120,
-    #     'disable': ['R1705', 'E9998', 'E9999']
-    # })
+    import python_ta
+    python_ta.check_all(config={
+        'max-line-length': 120,
+        'disable': ['R1705', 'E9998', 'E9999']
+    })
 
     # game flow and logic
     # 1 initiate every information and game itself
@@ -163,15 +160,11 @@ if __name__ == "__main__":
         # location = game.get_location(game.current_location_id)
         location = game.get_location()
 
-        # TODO: Add new Event to game log to represent current game location
-        #  Note that the <choice> variable should be the command which led to this event
         # YOUR CODE HERE
 
         # event = Event(location.id_num, location.brief_description, copy.deepcopy(game.player))
         # game_log.add_event(event)
 
-        # TODO: Depending on whether or not it's been visited before,
-        #  print either full description (first time visit) or brief description (every subsequent visit) of location
         # YOUR CODE HERE
         if location.visited:
             print(location.brief_description)
@@ -195,7 +188,6 @@ if __name__ == "__main__":
         print("You decided to:", choice)
 
         if choice in menu:
-            # TODO: Handle each menu command as appropriate
             # Note: For the "undo" command, remember to manipulate the game_log event list to keep it up-to-date
             if choice == "log":
                 print("user command: log")
@@ -225,7 +217,6 @@ if __name__ == "__main__":
                 exit()
         else:
             # Handle non-menu actions
-            # TODO: Add in code to deal with special locations (e.g. puzzles) as needed for your game
             if choice.__contains__("go"):
                 conditional_item = [x.name for x in game.player.inventory]
                 target_location = game.get_location(location.available_commands[choice])
@@ -237,7 +228,6 @@ if __name__ == "__main__":
                     # fail to move, no change in location
                     print("ops, you may need below items to move to this area")
                     print([item for item in target_location.items if item not in game.player.inventory])
-            # TODO: Add in code to deal with actions which do not change the location (e.g. taking or using an item)
             else:
                 if choice[5:len(choice)] not in game.player.inventory:
                     game.player.inventory.append(game.get_item(choice[5:len(choice)]))

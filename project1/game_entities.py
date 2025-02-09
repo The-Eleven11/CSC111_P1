@@ -53,8 +53,8 @@ class Location:
     items: list
     visited: bool
 
-    def __init__(self, location_id, brief_description, long_description, available_commands, items,
-                 visited=False) -> None:
+    def __init__(self, location_id: int, brief_description: str, long_description: str, available_commands: dict,
+                 items: list) -> None:
         """Initialize a new location.
         """
 
@@ -63,7 +63,7 @@ class Location:
         self.long_description = long_description
         self.available_commands = available_commands
         self.items = items
-        self.visited = visited
+        self.visited = False
 
 
 @dataclass
@@ -102,14 +102,15 @@ class Player:
     this class represent the player in this game
 
     Instance Attribute:
-
+    - inventory: list of items gained by player
+    - time: time limit of game
     Representation Invariant:
-
+    - self.time > 0
     """
     inventory: []
     time: int
 
-    def __init__(self, time) -> None:
+    def __init__(self, time: int) -> None:
         self.inventory = []
         self.time = time
 
@@ -159,12 +160,11 @@ class Player:
 
 
 if __name__ == "__main__":
-    pass
     # When you are ready to check your work with python_ta, uncomment the following lines.
     # (Delete the "#" and space before each line.)
     # IMPORTANT: keep this code indented inside the "if __name__ == '__main__'" block
-    # import python_ta
-    # python_ta.check_all(config={
-    #     'max-line-length': 120,
-    #     'disable': ['R1705', 'E9998', 'E9999']
-    # })
+    import python_ta
+    python_ta.check_all(config={
+        'max-line-length': 120,
+        'disable': ['R1705', 'E9998', 'E9999']
+    })
