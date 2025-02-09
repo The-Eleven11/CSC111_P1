@@ -21,7 +21,7 @@ from __future__ import annotations
 import json
 from typing import Optional
 
-from game_entities import Location, Item
+from game_entities import Location, Item, Player
 from proj1_event_logger import Event, EventList
 
 
@@ -49,8 +49,9 @@ class AdventureGame:
     _items: list[Item]
     current_location_id: int  # Suggested attribute, can be removed
     ongoing: bool  # Suggested attribute, can be removed
+    player: Player
 
-    def __init__(self, game_data_file: str, initial_location_id: int) -> None:
+    def __init__(self, game_data_file: str, initial_location_id: int, time: int) -> None:
         """
         Initialize a new text adventure game, based on the data in the given file, setting starting location of game
         at the given initial location ID.
@@ -73,6 +74,7 @@ class AdventureGame:
         # Suggested attributes (you can remove and track these differently if you wish to do so):
         self.current_location_id = initial_location_id  # game begins at this location
         self.ongoing = True  # whether the game is ongoing
+        self.player = Player(time)  # player obj in game
 
     @staticmethod
     def _load_game_data(filename: str) -> tuple[dict[int, Location], list[Item]]:
@@ -92,7 +94,10 @@ class AdventureGame:
         items = []
         # TODO: Add Item objects to the items list; your code should be structured similarly to the loop above
         # YOUR CODE BELOW
-
+        for loc_data in data['items']:
+            item_obj = Item(loc_data['name'], loc_data['target_points'])
+            items.append(item_obj)
+        # Load items done
         return locations, items
 
     def get_location(self, loc_id: Optional[int] = None) -> Location:
@@ -102,6 +107,10 @@ class AdventureGame:
 
         # TODO: Complete this method as specified
         # YOUR CODE BELOW
+        if loc_id is None:
+            return self._locations[self.current_location_id]
+        else:
+            return self._locations[loc_id]
 
 
 if __name__ == "__main__":
