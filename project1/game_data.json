@@ -2,172 +2,173 @@
   "locations": [
     {
       "id": 1,
-      "name": "C1 Dorm room",
+      "name": "Campus One Dorm room",
       "brief_description": "TBA",
-      "long_description": "TBA",
+      "long_description": "You wake up in your dorm room, which is in complete disarray. However, your anxiety at this moment surpasses the mess. You know you need to find your laptop charger, the USB drive that stores all your project code, and your water bottle before the deadline hits. To the west is your desk, to the south is your bed, and to the east is your dorm door. Beyond that door, you'll reach the 15th floor of Campus One.",
       "available_commands": {
-        "go south": 2,
-        "go west": 3,
-        "go east": 4
+      "go south": 2,
+      "go west": 3,
+      "go east": 4
       },
-      "items": ["toonie"]
+      "items": []
     },
     {
       "id": 2,
-      "name": "C1 Bed",
-      "brief_description": "TBA",
-      "long_description": "TBA",
+      "name": "Dorm room Bed",
+      "brief_description": "Your bed is messy. Type “go north” to return to your room.",
+      "long_description": "Your bed is a total mess, and you have no idea if something might be hidden underneath the blanket. Type “go north” to return to your room.",
       "available_commands": {
         "go north": 1
       },
-      "items": ["toonie"]
+      "items": []
     },
     {
       "id": 3,
-      "name": "C1 Desk",
-      "brief_description": "TBA",
-      "long_description": "TBA",
+      "name": "Dorm room Desk",
+      "brief_description": "Your desk is very cluttered, your dorm door is to the east",
+      "long_description": "Your desk is very cluttered, but you can still spot your T-card, the CS111 syllabus, and a mouse on it. Type the name of an item to pick it up. Your dorm door is to the east.",
       "available_commands": {
         "go east": 1
       },
-      "items": ["toonie"]
+      "items": ["T-card", "CSC111 syllabus"]
     },
     {
       "id": 4,
-      "name": "C1 25F",
+      "name": "Campus One 15th floor",
       "brief_description": "TBA",
-      "long_description": "TBA",
+      "long_description": "You are on the 15th floor of Campus One. To the north is the elevator, to the east is the study room, and to the west is your dorm room.",
       "available_commands": {
-        "go north": 6,
         "go west": 1,
-        "go east": 5
+        "go east": 5,
+        "go north": 6
       },
-      "items": ["toonie"]
+      "items": []
     },
     {
       "id": 5,
-      "name": "C1 Self Study Room",
-      "brief_description": "TBA",
-      "long_description": "TBA",
+      "name": "Campus One Study Room",
+      "brief_description": "You don't recall ever being in this study room before. The exit is to the west.",
+      "long_description": "You don't recall ever being in this study room before. The exit is to the west.",
       "available_commands": {
         "go west": 4
       },
-      "items": ["toonie"]
+      "items": []
     },
     {
       "id": 6,
-      "name": "C1 Elevator",
-      "brief_description": "TBA",
-      "long_description": "TBA",
+      "name": "Campus One Elevator",
+      "brief_description": "Welcome aboard the Campus One elevator. There are many buttons inside. You know that \"1\" takes you to the lobby, and \"15\" is the floor where your room is located. Type \"1\" or \"15\" to go to the corresponding floor.",
+      "long_description": "Welcome aboard the Campus One elevator. There are many buttons inside. You know that \"1\" takes you to the lobby, and \"15\" is the floor where your room is located. Type \"1\" or \"15\" to go to the corresponding floor.",
       "available_commands": {
-        "go north": 7,
-        "go south": 4,
+        "15": 4,
+        "1": 7
       },
-      "items": ["toonie"]
+      "items": []
     },
     {
       "id": 7,
-      "name": "C1 Lobby",
-      "brief_description": "TBA",
-      "long_description": "TBA",
+      "name": "Campus One Lobby",
+      "brief_description": "This is the Campus One lobby. You can head south to reach the elevator that takes you to your dorm room.",
+      "long_description": "This is the Campus One lobby. You can head south to reach the elevator that takes you to your dorm room.",
       "available_commands": {
+        "go south": 6,
         "go north": 8
       },
-      "items": ["toonie"]
+      "items": []
     },
     {
       "id": 8,
       "name": "Walk Way",
-      "brief_description": "TBA",
-      "long_description": "TBA",
+      "brief_description": "This is St. George Street. Heading north takes you to RB, south to Campus One, west to BA, and east to MS.",
+      "long_description": "This is St. George Street, where many University of Toronto buildings line both sides of the road. Heading north, you'll reach the Roberts Library, a place you frequently study at. Heading south takes you to your dorm, Campus One. Going west leads to the Bahen Centre, the hub for the computer science department. To the east is the Medical Sciences Building, where you often grab food and where a Starbucks is located.",
       "available_commands": {
         "go north": 15,
         "go south": 7,
         "go west": 21,
         "go east": 9
       },
-      "items": ["toonie"]
+      "items": []
     },
     {
       "id": 9,
       "name": "MS Lobby",
-      "brief_description": "TBA",
-      "long_description": "TBA",
+      "brief_description": "This is the MS lobby. You can head east to reach Starbucks or west to return to St. George Street.",
+      "long_description": "This is the MS lobby. You can head east to reach Starbucks or west to return to St. George Street.",
       "available_commands": {
         "go west": 8,
         "go east": 10
       },
-      "items": ["toonie"]
+      "items": []
     },{
       "id": 10,
       "name": "MS Starbucks",
-      "brief_description": "TBA",
-      "long_description": "TBA",
+      "brief_description": "This is the Starbucks in MS, but it is already closed. You can head west to return to the MS lobby or east to enter the dining hall.",
+      "long_description": "This is the Starbucks in MS. As an environmentally conscious person, you love using your own cup when ordering here. Feeling a bit drowsy, you had planned to get another coffee, but the Starbucks has already closed for the day. You can head west to return to the MS lobby or east to enter the dining hall.",
       "available_commands": {
         "go west": 9,
         "go east": 11
       },
-      "items": ["toonie"]
+      "items": []
     },
     {
       "id": 11,
       "name": "MS Dining Hall",
-      "brief_description": "TBA",
-      "long_description": "TBA",
+      "brief_description": "This is the MS dining hall. Due to limited seating, only students with food are allowed inside. Since you currently have no food, you do not have access to enter. Type \"go west\" to return to the Starbucks.",
+      "long_description": "This is the MS dining hall. Due to limited seating, only students with food are allowed inside. Since you currently have no food, you do not have access to enter. Type \"go west\" to return to the Starbucks.",
       "available_commands": {
         "go north": 12,
         "go south": 14,
         "go west": 10,
         "go east": 13
       },
-      "items": ["toonie"]
+      "items": []
     },
     {
       "id": 12,
       "name": "MS Desk1",
-      "brief_description": "TBA",
-      "long_description": "TBA",
+      "brief_description": "There's nothing here. Type \"go south\" to return to the dining hall.",
+      "long_description": "There's nothing here. Type \"go south\" to return to the dining hall.",
       "available_commands": {
-        "go south": 12,
+        "go south": 12
       },
-      "items": ["toonie"]
+      "items": []
     },
     {
       "id": 13,
       "name": "MS Desk2",
-      "brief_description": "TBA",
-      "long_description": "TBA",
+      "brief_description": "You found your missing water bottle on this table. Fortunately, no one took it. Type \"bottle\" to pick up the water bottle or \"go west\" to return to the dining hall.",
+      "long_description": "You found your missing water bottle on this table. Fortunately, no one took it. Type \"bottle\" to pick up the water bottle or \"go west\" to return to the dining hall.",
       "available_commands": {
-        "go west": 11,
+        "go west": 11
       },
-      "items": ["toonie"]
+      "items": ["bottle"]
     },
     {
       "id": 14,
       "name": "MS Desk3",
-      "brief_description": "TBA",
-      "long_description": "TBA",
+      "brief_description": "There's nothing here. Type \"go north\" to return to the dining hall.",
+      "long_description": "There's nothing here. Type \"go north\" to return to the dining hall.",
       "available_commands": {
         "go north": 11
       },
-      "items": ["toonie"]
+      "items": []
     },
     {
       "id": 15,
       "name": "RB Entry",
-      "brief_description": "TBA",
-      "long_description": "TBA",
+      "brief_description": "This is the entrance to Roberts Library. You can head north to reach the RB lobby or south to return to St. George Street.",
+      "long_description": "This is the entrance to Roberts Library. You can head north to reach the RB lobby or south to return to St. George Street.",
       "available_commands": {
         "go north": 16,
         "go south": 8
       },
-      "items": ["toonie"]
+      "items": []
     },
     {
       "id": 16,
       "name": "RB Lobby",
       "brief_description": "TBA",
-      "long_description": "TBA",
+      "long_description": "This is the RB lobby, where books and computers are displayed. You can head north to reach the second floor of RB, south back to entry, west to Study Room, or east to Front desk.",
       "available_commands": {
         "go north": 18,
         "go south": 15,
@@ -246,7 +247,7 @@
       "brief_description": "TBA",
       "long_description": "TBA",
       "available_commands": {
-        "go north": 22,
+        "go north": 22
 
       },
       "items": ["toonie"]
