@@ -85,7 +85,7 @@ class AdventureGame:
         return a tuple consisting of (1) a dictionary of locations mapping each game location's ID to a Location object,
         and (2) a list of all Item objects."""
 
-        with open(filename, 'r') as f:
+        with open(filename, 'r', encoding='utf-8') as f:
             data = json.load(f)  # This loads all the data from the JSON file
 
         locations = {}
