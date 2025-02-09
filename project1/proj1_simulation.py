@@ -34,6 +34,7 @@ class AdventureGameSimulation:
     #   - _events: A collection of the events to process during the simulation.
     _game: AdventureGame
     _events: EventList
+    _player = Player
 
     # TODO: Copy/paste your code from ex1_simulation below, and make adjustments as needed
     def __init__(self, game_data_file: str, initial_location_id: int, commands: list[str], time: int) -> None:
@@ -49,10 +50,10 @@ class AdventureGameSimulation:
 
         # TODO: Generate the remaining events based on the commands and initial location
         # Hint: Call self.generate_events with the appropriate arguments
-        player = Player(time)
+        self._player = Player(time)
 
         self._events = EventList()
-        self._game = AdventureGame(game_data_file, initial_location_id, player)
+        self._game = AdventureGame(game_data_file, initial_location_id, self._player)
 
         # Add first event (initial location, no previous command)
         # Hint: self._game.get_location() gives you back the current location
@@ -60,7 +61,7 @@ class AdventureGameSimulation:
         initial_event = Event(
             id_num=initial_location.id_num,
             description=initial_location.brief_description,
-            player=player,
+            player=self._player,
             next_command=None,
             next=None,
             prev=None
@@ -83,28 +84,22 @@ class AdventureGameSimulation:
         # Hint: current_location.available_commands[command] will return the next location ID
         # which executing <command> while in <current_location_id> leads to
         for command in commands:
-            next_location = current_location
             if command.__contains__("go"):
-                if all(item in self._game.player.inventory for item in current_location.items):
+                conditional_item = [x.name for x in self._game.player.inventory]
+                target_location = self._game.get_location(current_location.available_commands[command])
+                if all(item in conditional_item for item in target_location.items):
                     # move fit condition
-                    next_location_id = current_location.available_commands[command]
-                    next_location = self._game.get_location(next_location_id)
+                    result = current_location.available_commands[command]
+                    self._game.current_location_id = result
                 else:
                     # fail to move, no change in location
                     print("ops, you may need below items to move to this area")
                     print([item for item in current_location.items if item not in self._game.player.inventory])
+            # TODO: Add in code to deal with actions which do not change the location (e.g. taking or using an item)
             else:
-                self._game.player.inventory.add(self._game.get_item(command[5 | len(command)]))
-            next_event = Event(
-                id_num=next_location.id_num,
-                description=next_location.brief_description,
-                next_command=command,
-                player=self._game.player,
-                next=None,
-                prev=None
-            )
-            self._events.add_event(next_event, command)
-            current_location = next_location
+                self._game.player.inventory.append(self._game.get_item(command[5:len(command)]))
+                event = Event(current_location.id_num, current_location.brief_description, self._game.player)
+                self._events.add_event(event, command)
 
     def get_id_log(self) -> list[int]:
         """

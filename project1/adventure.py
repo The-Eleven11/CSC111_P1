@@ -150,6 +150,7 @@ if __name__ == "__main__":
     menu = ["look", "inventory", "score", "undo", "log", "quit"]  # Regular menu options available at each location
     choice = None
 
+    # add first event
     location = game.get_location()
     event = Event(location.id_num, location.brief_description, copy.deepcopy(game.player))
     game_log.add_event(event, location.brief_description)
