@@ -39,7 +39,6 @@ class Event:
     - prev: Event object representing the previous event in the game, None if this is the first game event
     """
 
-
     # NOTES:
     # Complete this class EXACTLY as specified, with ALL of the above attributes.
     # Do NOT add any new attributes, or modify the names or types of the above attributes.
@@ -47,11 +46,11 @@ class Event:
     # set of attributes, you can do that separately in the project1 folder. This class is part of
     # Exercise 1 and will be auto-graded.
 
-    id_num : int
-    description : str
-    next_command : str
-    next : Event
-    prev : Event
+    id_num: int
+    description: str
+    next_command: str
+    next: Event
+    prev: Event
 
 
 class EventList:

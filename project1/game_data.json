@@ -1,10 +1,329 @@
+//{
+//  "locations": [
+//    {
+//      "id": 1,
+//      "name": "Bahen 1F",
+//      "brief_description": "You are on the first floor of the Bahen Center. There are elevators to the West, and an exit from the building to St. George street to the East. You see something shiny on the ground -- looks like a toonie?",
+//      "long_description": "You are on the first floor of the Bahen Center. It's usually crowded at this time of the day, but today it's eerily quiet. Only a few students are studying at the table near the doors. You better not disturb them. One student is rushing down the corridor, wearing a heavy-looking backpack and carrying a textbook in their arms. There are elevators to the West, and an exit from the building to St. George street to the East.",
+//      "available_commands": {
+//        "go south": 4,
+//        "go east": 2
+//      },
+//      "items": ["toonie"]
+//    }
+//  ],
+//  "items": [
+//    {
+//      "name": "toonie",
+//      "description": "There is a toonie on the ground. Someone must have dropped it.",
+//      "start_position": 1,
+//      "target_position": 4,
+//      "target_points": 5
+//    }
+//  ]
+//}
+
 {
   "locations": [
     {
       "id": 1,
+      "name": "C1 Dorm room",
+      "brief_description": "TBA",
+      "long_description": "TBA",
+      "available_commands": {
+        "go south": 2,
+        "go west": 3,
+        "go east": 4
+      },
+      "items": ["toonie"]
+    },
+    {
+      "id": 2,
+      "name": "C1 Bed",
+      "brief_description": "TBA",
+      "long_description": "TBA",
+      "available_commands": {
+        "go north": 1
+      },
+      "items": ["toonie"]
+    },
+    {
+      "id": 3,
+      "name": "C1 Desk",
+      "brief_description": "TBA",
+      "long_description": "TBA",
+      "available_commands": {
+        "go east": 1
+      },
+      "items": ["toonie"]
+    },
+    {
+      "id": 4,
+      "name": "C1 25F",
+      "brief_description": "TBA",
+      "long_description": "TBA",
+      "available_commands": {
+        "go north": 6,
+        "go west": 1,
+        "go east": 5
+      },
+      "items": ["toonie"]
+    },
+    {
+      "id": 5,
+      "name": "C1 Self Study Room",
+      "brief_description": "TBA",
+      "long_description": "TBA",
+      "available_commands": {
+        "go west": 4
+      },
+      "items": ["toonie"]
+    },
+    {
+      "id": 6,
+      "name": "C1 Elevator",
+      "brief_description": "TBA",
+      "long_description": "TBA",
+      "available_commands": {
+        "go north": 7,
+        "go south": 4,
+      },
+      "items": ["toonie"]
+    },
+    {
+      "id": 7,
+      "name": "C1 Lobby",
+      "brief_description": "TBA",
+      "long_description": "TBA",
+      "available_commands": {
+        "go north": 8
+      },
+      "items": ["toonie"]
+    },
+    {
+      "id": 8,
+      "name": "Walk Way",
+      "brief_description": "TBA",
+      "long_description": "TBA",
+      "available_commands": {
+        "go north": 15,
+        "go south": 7,
+        "go west": 21,
+        "go east": 9
+      },
+      "items": ["toonie"]
+    },
+    {
+      "id": 9,
+      "name": "MS Lobby",
+      "brief_description": "TBA",
+      "long_description": "TBA",
+      "available_commands": {
+        "go west": 8,
+        "go east": 10
+      },
+      "items": ["toonie"]
+    },{
+      "id": 10,
+      "name": "MS Starbucks",
+      "brief_description": "TBA",
+      "long_description": "TBA",
+      "available_commands": {
+        "go west": 9,
+        "go east": 11
+      },
+      "items": ["toonie"]
+    },
+    {
+      "id": 11,
+      "name": "MS Dining Hall",
+      "brief_description": "TBA",
+      "long_description": "TBA",
+      "available_commands": {
+        "go north": 12,
+        "go south": 14,
+        "go west": 10,
+        "go east": 13
+      },
+      "items": ["toonie"]
+    },
+    {
+      "id": 12,
+      "name": "MS Desk1",
+      "brief_description": "TBA",
+      "long_description": "TBA",
+      "available_commands": {
+        "go south": 12,
+      },
+      "items": ["toonie"]
+    },
+    {
+      "id": 13,
+      "name": "MS Desk2",
+      "brief_description": "TBA",
+      "long_description": "TBA",
+      "available_commands": {
+        "go west": 11,
+      },
+      "items": ["toonie"]
+    },
+    {
+      "id": 14,
+      "name": "MS Desk3",
+      "brief_description": "TBA",
+      "long_description": "TBA",
+      "available_commands": {
+        "go north": 11
+      },
+      "items": ["toonie"]
+    },
+    {
+      "id": 15,
+      "name": "RB Entry",
+      "brief_description": "TBA",
+      "long_description": "TBA",
+      "available_commands": {
+        "go north": 16,
+        "go south": 8
+      },
+      "items": ["toonie"]
+    },
+    {
+      "id": 16,
+      "name": "RB Lobby",
+      "brief_description": "TBA",
+      "long_description": "TBA",
+      "available_commands": {
+        "go north": 18,
+        "go south": 15,
+        "go west": 17,
+        "go east": 19
+      },
+      "items": ["toonie"]
+    },
+    {
+      "id": 17,
+      "name": "RB Study Room",
+      "brief_description": "TBA",
+      "long_description": "TBA",
+      "available_commands": {
+        "go east": 16
+      },
+      "items": ["toonie"]
+    },
+    {
+      "id": 18,
+      "name": "RB Elevator",
+      "brief_description": "TBA",
+      "long_description": "TBA",
+      "available_commands": {
+        "go north": 20,
+        "go south": 16
+      },
+      "items": ["toonie"]
+    },
+    {
+      "id": 19,
+      "name": "RB Self-Study Room",
+      "brief_description": "TBA",
+      "long_description": "TBA",
+      "available_commands": {
+        "go west": 16
+      },
+      "items": ["toonie"]
+    },
+    {
+      "id": 20,
+      "name": "RB Starbucks",
+      "brief_description": "TBA",
+      "long_description": "TBA",
+      "available_commands": {
+        "go south": 18
+      },
+      "items": ["toonie"]
+    },
+    {
+      "id": 21,
+      "name": "BA Entry",
+      "brief_description": "TBA",
+      "long_description": "TBA",
+      "available_commands": {
+        "go west": 22,
+        "go east": 8
+      },
+      "items": ["toonie"]
+    },
+    {
+      "id": 22,
+      "name": "BA Lobby",
+      "brief_description": "TBA",
+      "long_description": "TBA",
+      "available_commands": {
+        "go south": 23,
+        "go west": 24,
+        "go east": 21
+      },
+      "items": ["toonie"]
+    },
+    {
+      "id": 23,
+      "name": "BA Self-Study Room",
+      "brief_description": "TBA",
+      "long_description": "TBA",
+      "available_commands": {
+        "go north": 22,
+
+      },
+      "items": ["toonie"]
+    },
+    {
+      "id": 24,
+      "name": "BA Elevator",
+      "brief_description": "TBA",
+      "long_description": "TBA",
+      "available_commands": {
+        "go north": 25,
+        "go west": 26,
+        "go east": 22
+      },
+      "items": ["toonie"]
+    },
+    {
+      "id": 25,
+      "name": "BA Office",
+      "brief_description": "TBA",
+      "long_description": "TBA",
+      "available_commands": {
+        "go south": 24
+      },
+      "items": ["toonie"]
+    },
+    {
+      "id": 26,
+      "name": "BA CS Lab",
+      "brief_description": "TBA",
+      "long_description": "TBA",
+      "available_commands": {
+        "go west": 27,
+        "go east": 24
+      },
+      "items": ["toonie"]
+    },
+    {
+      "id": 27,
+      "name": "BA Lost and Found",
+      "brief_description": "TBA",
+      "long_description": "TBA",
+      "available_commands": {
+        "go east": 26
+      },
+      "items": ["toonie"]
+    },
+    {
+      "id": 1,
       "name": "Bahen 1F",
-      "brief_description": "You are on the first floor of the Bahen Center. There are elevators to the West, and an exit from the building to St. George street to the East. You see something shiny on the ground -- looks like a toonie?",
-      "long_description": "You are on the first floor of the Bahen Center. It's usually crowded at this time of the day, but today it's eerily quiet. Only a few students are studying at the table near the doors. You better not disturb them. One student is rushing down the corridor, wearing a heavy-looking backpack and carrying a textbook in their arms. There are elevators to the West, and an exit from the building to St. George street to the East.",
+      "brief_description": "TBA",
+      "long_description": "TBA",
       "available_commands": {
         "go south": 4,
         "go east": 2
