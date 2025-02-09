@@ -93,7 +93,7 @@ class AdventureGameSimulation:
                 else:
                     # fail to move, no change in location
                     print("ops, you may need below items to move to this area")
-                    print([item for item in current_location.items if item not in self._game.player.inventory])
+                    print([item for item in target_location.items if item not in self._game.player.inventory])
             else:
                 self._game.player.inventory.append(self._game.get_item(command[5:len(command)]))
             event = Event(current_location.id_num, current_location.brief_description, self._game.player)
