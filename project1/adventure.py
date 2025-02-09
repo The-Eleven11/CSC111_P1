@@ -153,7 +153,7 @@ if __name__ == "__main__":
         # Note: If the loop body is getting too long, you should split the body up into helper functions
         # for better organization. Part of your marks will be based on how well-organized your code is.
 
-        location = game.get_location()
+        location = game.get_location(game.current_location_id)
 
         # TODO: Add new Event to game log to represent current game location
         #  Note that the <choice> variable should be the command which led to this event
@@ -207,7 +207,7 @@ if __name__ == "__main__":
                 else:
                     print("User command: undo")
                     game_log.remove_last_event()
-                    game.current_location_id = game_log.get_id_log()
+                    game.current_location_id = game_log.get_id_log()[-1]
                     game.player = game_log.last.player
                     curr_time -= 1
             if choice == 'quit':
