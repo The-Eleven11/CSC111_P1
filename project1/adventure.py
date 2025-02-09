@@ -190,9 +190,6 @@ if __name__ == "__main__":
             print("That was an invalid option; try again.")
             choice = input("\nEnter action: ").lower().strip()
 
-        event = Event(location.id_num, location.brief_description, copy.deepcopy(game.player))
-        game_log.add_event(event, choice)
-
         print("========")
         print("You decided to:", choice)
 
@@ -213,7 +210,7 @@ if __name__ == "__main__":
                 print("user command: score")
                 print(str(game.player.curr_score()) + "\n")
             if choice == 'undo':
-                if curr_time == 0:
+                if len(game_log.get_id_log()) == 1:
                     # must have at least one step done
                     print("Error: there is no more step made")
                 else:
@@ -221,7 +218,6 @@ if __name__ == "__main__":
                     game_log.remove_last_event()
                     game.current_location_id = game_log.get_id_log()[-1]
                     game.player = game_log.last.player
-                    curr_time -= 1
             if choice == 'quit':
                 print("user command: quit, game is ended")
                 print("final score gained:" + str(game.player.curr_score()))
@@ -230,7 +226,8 @@ if __name__ == "__main__":
             # Handle non-menu actions
             # TODO: Add in code to deal with special locations (e.g. puzzles) as needed for your game
             if choice.__contains__("go"):
-                if all(item in game.player.inventory for item in location.items):
+                conditional_item = [x.nsme for x in game.player.inventory]
+                if all(item in conditional_item for item in location.items):
                     # move fit condition
                     result = location.available_commands[choice]
                     game.current_location_id = result
@@ -247,6 +244,10 @@ if __name__ == "__main__":
         game.ongoing = not game.player.check_win()
         if curr_time > time:
             game.ongoing = False
+        last_curr_time = curr_time
+        if choice != 'undo':
+            event = Event(location.id_num, location.brief_description, copy.deepcopy(game.player))
+            game_log.add_event(event, choice)
 
     # ending: print score of game
     print("you win this game!" if game.player.check_win() else "you lose, try next time")

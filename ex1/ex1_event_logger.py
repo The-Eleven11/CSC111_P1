@@ -42,7 +42,6 @@ class Event:
     - prev: Event object representing the previous event in the game, None if this is the first game event
     """
 
-
     # NOTES:
     # Complete this class EXACTLY as specified, with ALL of the above attributes.
     # Do NOT add any new attributes, or modify the names or types of the above attributes.

@@ -116,11 +116,16 @@ class EventList:
         If the list is empty, do nothing."""
 
         # Hint: The <next_command> and <next> attributes for the new last event should be updated as needed
-
-        new_last = self.last.prev
-        new_last.next = None
-        new_last.next_command = None
-        self.last = new_last
+        if self.is_empty():
+            return None
+        elif len(self.get_id_log()) == 1:
+            self.last = None
+            self.first = None
+        else:
+            new_last = self.last.prev
+            new_last.next = None
+            new_last.next_command = None
+            self.last = new_last
 
     def get_id_log(self) -> list[int]:
         """Return a list of all location IDs visited for each event in this list, in sequence."""
