@@ -25,6 +25,8 @@ from __future__ import annotations
 from dataclasses import dataclass
 from typing import Optional
 
+from project1.game_entities import Player
+
 
 @dataclass
 class Event:
@@ -34,6 +36,7 @@ class Event:
     Instance Attributes:
     - id_num: Integer id of this event's location
     - description: Long description of this event's location
+    - player: information of player in this event(step)
     - next_command: String command which leads this event to the next event, None if this is the last game event
     - next: Event object representing the next event in the game, or None if this is the last game event
     - prev: Event object representing the previous event in the game, None if this is the first game event
@@ -48,6 +51,7 @@ class Event:
 
     id_num: int
     description: str
+    player: Player
     next_command: Optional[str] = None
     next: Optional[Event] = None
     prev: Optional[Event] = None

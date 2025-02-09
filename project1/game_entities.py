@@ -137,7 +137,7 @@ class Player:
         item_coe = 1
         return item_coe * len(self.inventory)
 
-    def final_score(self) -> int:
+    def final_score(self, time_spent: int) -> int:
         """
         method to return the total score earned by player in the end of game
         """
@@ -147,7 +147,7 @@ class Player:
         item_score = 0
         for item in self.inventory:
             item_score += item.target_points
-        return time_coe * self.time + item_score
+        return time_coe * (self.time - time_spent) + item_score
 
 
 if __name__ == "__main__":

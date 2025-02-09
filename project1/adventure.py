@@ -21,7 +21,7 @@ from __future__ import annotations
 import json
 from typing import Optional
 
-from game_entities import Location, Item
+from game_entities import Location, Item, Player
 from proj1_event_logger import Event, EventList
 
 
@@ -34,10 +34,13 @@ class AdventureGame:
     """A text adventure game class storing all location, item and map data.
 
     Instance Attributes:
-        - # TODO add descriptions of public instance attributes as needed
-
+    - _locations: every locations of game, the map
+    - _items: conditional items that is needed to access this area
+    - current_location_id: the location you are in in this step
+    - ongoing: whether this game is continue
+    - player: the information of player in this step
     Representation Invariants:
-        - # TODO add any appropriate representation invariants as needed
+    - # TODO add any appropriate representation invariants as needed
     """
 
     # Private Instance Attributes (do NOT remove these two attributes):
@@ -49,8 +52,9 @@ class AdventureGame:
     _items: list[Item]
     current_location_id: int  # Suggested attribute, can be removed
     ongoing: bool  # Suggested attribute, can be removed
+    player: Player
 
-    def __init__(self, game_data_file: str, initial_location_id: int) -> None:
+    def __init__(self, game_data_file: str, initial_location_id: int, player: Player) -> None:
         """
         Initialize a new text adventure game, based on the data in the given file, setting starting location of game
         at the given initial location ID.
@@ -73,6 +77,7 @@ class AdventureGame:
         # Suggested attributes (you can remove and track these differently if you wish to do so):
         self.current_location_id = initial_location_id  # game begins at this location
         self.ongoing = True  # whether the game is ongoing
+        self.player = player  # player obj in game
 
     @staticmethod
     def _load_game_data(filename: str) -> tuple[dict[int, Location], list[Item]]:
@@ -92,7 +97,10 @@ class AdventureGame:
         items = []
         # TODO: Add Item objects to the items list; your code should be structured similarly to the loop above
         # YOUR CODE BELOW
-
+        for loc_data in data['items']:
+            item_obj = Item(loc_data['name'], loc_data['target_points'])
+            items.append(item_obj)
+        # Load items done
         return locations, items
 
     def get_location(self, loc_id: Optional[int] = None) -> Location:
@@ -102,6 +110,19 @@ class AdventureGame:
 
         # TODO: Complete this method as specified
         # YOUR CODE BELOW
+        if loc_id is None:
+            return self._locations[self.current_location_id]
+        else:
+            return self._locations[loc_id]
+
+    def get_item(self, item_name: str) -> item:
+        """
+        return items whose name is item_name, return "" if not found
+        """
+        for item in self._items:
+            if item.name == item_name:
+                return item
+        return ""
 
 
 if __name__ == "__main__":
@@ -115,8 +136,15 @@ if __name__ == "__main__":
     #     'disable': ['R1705', 'E9998', 'E9999']
     # })
 
+    # game flow and logic
+    # 1 initiate every information and game itself
+    # default time provided: 200    ***
+    time = 200
+    curr_time = 0
+    player = Player(time)
+
     game_log = EventList()  # This is REQUIRED as one of the baseline requirements
-    game = AdventureGame('game_data.json', 1)  # load data, setting initial location ID to 1
+    game = AdventureGame('game_data.json', 1, player)  # load data, setting initial location ID to 1
     menu = ["look", "inventory", "score", "undo", "log", "quit"]  # Regular menu options available at each location
     choice = None
 
@@ -130,10 +158,16 @@ if __name__ == "__main__":
         # TODO: Add new Event to game log to represent current game location
         #  Note that the <choice> variable should be the command which led to this event
         # YOUR CODE HERE
-
+        event = Event(location.id_num, location.long_description, game.player)
+        game_log.add_event(event)
         # TODO: Depending on whether or not it's been visited before,
         #  print either full description (first time visit) or brief description (every subsequent visit) of location
         # YOUR CODE HERE
+        if location.visited:
+            print(location.brief_description)
+        else:
+            print(location.long_description)
+            location.visited = True
 
         # Display possible actions at this location
         print("What to do? Choose from: look, inventory, score, undo, log, quit")
@@ -154,13 +188,52 @@ if __name__ == "__main__":
             # TODO: Handle each menu command as appropriate
             # Note: For the "undo" command, remember to manipulate the game_log event list to keep it up-to-date
             if choice == "log":
+                print("user command: log")
                 game_log.display_events()
             # ENTER YOUR CODE BELOW to handle other menu commands (remember to use helper functions as appropriate)
-
+            if choice == 'look':
+                print("user command: look")
+                print(location.long_description)
+            if choice == 'inventory':
+                print("user command: inventory")
+                print(game.player.inventory)
+            if choice == 'score':
+                print("user command: score")
+                print(game.player.curr_score())
+            if choice == 'undo':
+                if curr_time == 0:
+                    # must have at least one step done
+                    print("Error: there is no more step made")
+                else:
+                    print("User command: undo")
+                    game_log.remove_last_event()
+                    game.current_location_id = game_log.get_id_log()
+                    game.player = game_log.last.player
+                    curr_time -= 1
+            if choice == 'quit':
+                print("user command: quit, game is ended")
+                print("final score gained:" + str(game.player.curr_score()))
         else:
             # Handle non-menu actions
-            result = location.available_commands[choice]
-            game.current_location_id = result
-
-            # TODO: Add in code to deal with actions which do not change the location (e.g. taking or using an item)
             # TODO: Add in code to deal with special locations (e.g. puzzles) as needed for your game
+            if choice.__contains__(choice):
+                if all(item in game.player.inventory for item in location.items):
+                    # move fit condition
+                    result = location.available_commands[choice]
+                    game.current_location_id = result
+                else:
+                    # fail to move, no change in location
+                    print("ops, you may need below items to move to this area")
+                    print([item for item in location.items if item not in game.player.inventory])
+            # TODO: Add in code to deal with actions which do not change the location (e.g. taking or using an item)
+            else:
+                game.player.inventory.add(game.get_item(choice[5 | len(choice)]))
+            curr_time += 1
+            # related to go some places
+        game.ongoing = not game.player.check_win()
+        if curr_time > time:
+            game.ongoing = False
+
+    # ending: print score of game
+    print("you win this game!" if game.player.check_win() else "you lose, try next time")
+    print(game.player.final_score(curr_time))
