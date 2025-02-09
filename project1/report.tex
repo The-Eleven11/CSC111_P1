@@ -2,11 +2,12 @@
 \usepackage{amsmath}
 \usepackage{amsfonts}
 \usepackage{amsthm}
+\usepackage{listings}
 \usepackage[utf8]{inputenc}
 \usepackage[margin=0.75in]{geometry}
 
 \title{CSC111 Winter 2025 Project 1}
-\author{TODO: FILL IN YOUR NAME(S) HERE}
+\author{Jiayi Yang \& Yifu Liang}
 \date{\today}
 
 \begin{document}
@@ -19,78 +20,256 @@ We should be able to run your game by simply running \texttt{adventure.py}. If y
 Example game map below (edit it to show your actual game map):
 
 \begin{verbatim}
-  1  2  3
- -1  4 -1
- -1  5 -1
+     0   1   2   3   4   5   9   7   8   9
+   _______________________________________
+0 | -1  -1  -1  -1  -1  20  -1  -1  -1  -1
+   
+0 | -1  -1  -1  -1  -1  18  -1  -1  -1  -1
+  |
+1 | -1  -1  -1  -1  17  16  19  -1  -1  -1
+  |
+2 | -1  -1  25  -1  -1  15  -1  -1  12  -1
+  |
+3 | -1  26  24  22  21  8   9   10  11  13
+  |
+4 | -1  -1  -1  23  -1  7   -1  -1  14  -1
+  |
+5 | -1  -1  -1  -1  -1  6   -1  -1  -1  -1
+  |
+6 | -1  -1  -1  3   1   4   5   -1  -1  -1
+  |
+7 | -1  -1  -1  -1  2   -1  -1  -1  -1  -1
+  |
+8 | -1  -1  -1  -1  -1  -1  -1  -1  -1  -1
+  |
+9 | -1  -1  -1  -1  -1  -1  -1  -1  -1  -1
+
 \end{verbatim}
 
-Starting location is: 1
+Starting location is: 1             \\
+1 (Dorm room)                       \\  
+Dorm Bed: 2                           \\
+Dorm Desk: 3                          \\
+Campus One 25F: 4                           \\
+Campus One Self Study Room: 5               \\
+Campus One Elevator: 6                      \\
+Campus One Lobby: 7                         \\
+St. George st.: 8                         \\
+MS Lobby: 9                         \\
+MS Starbucks: 10                    \\
+MS Dining Hall: 11                  \\
+MS Desk1: 12                        \\
+MS Desk2: 13                        \\
+MS Desk3: 14                        \\
+RB Entry: 15                        \\
+RB Lobby: 16                        \\
+RB Study Room: 17                   \\
+RB Elevator: 18                     \\
+RB Front desk: 19              \\
+RB Starbucks: 20                    \\
+BA Entry: 21                        \\
+BA Lobby: 22                        \\
+BA Engineering Lounge: 23              \\
+BA 2nd floor: 24                     \\
+BA Sadia Office: 25                       \\
+BA CS Lab: 26                       \\
 
 \section*{Game solution}
-List of commands:
+We have 2 solutions(include one hidden ending):\\
+\textbf{Hidden ending:}\\
+go west\\
+pick csc111 syllabus\\
+go east\\
+go east\\
+go north\\
+go 1\\
+go north\\
+go west\\
+go west\\
+go west\\
+go north\\
+take assignment extension\\ \\
+\textbf{Resgular solution:}\\
+go west\\
+pick t-card\\
+go east\\
+go east\\
+go north\\
+go 1\\
+go north\\
+go north\\
+go north\\
+go north\\
+go north\\
+pick coffee\\
+go south\\
+go south\\
+go south\\
+go south\\
+go east\\
+go east\\
+go east\\
+go east\\
+pick bottle\\
+go west\\
+go west\\
+go west\\
+go west\\
+go west\\
+go west\\
+go south\\
+go 10\\
+pick usb\\
+go north\\
+go west\\
+go west\\
+pick charger\\
 
 \section*{Lose condition(s)}
 Description of how to lose the game:
 
+If the player moves more than 60 steps but still does not get the needed item, then the player is considered to have exceeded the ddl without completing the task and loses the game.\\
 List of commands:
 
+ANY COMMANDS OVER 60 STEPS\\
 Which parts of your code are involved in this functionality:
+\begin{lstlisting}
 
+\end{lstlisting}
 % Copy-paste the above if you have multiple lose conditions and describe each possible way to lose the game
-
 \section*{Inventory}
 
 \begin{enumerate}
-\item All location IDs that involve items in the game:
-
-\item Item data:
+\item All location IDs that involve items in the game:\\
+id3: Dorm room desk; it has t-card and csc111 syllabus\\
+id13: Medical science building dining hall desk; it has my water bottle\\
+id20: Starbucks in Roberts library; you can get a coffee here\\
+id23: Bahen center engineering lounge; it has your usb disk\\
+id26: CS lab; your laptop charger is here\\
+\item Item data:\\
+ps: We have modified the item class so that the only attributes of the item are name and target\_points. name is used to store the name of the item, and target\_points is an algorithm that calculates the score for our game. Our final score will be partially determined by the items in our backpack, and different items will have different values for the score calculation. The ability to get items is integrated into the location and adventure.py functions.
 \begin{enumerate}
     \item For Item 1:
     \begin{itemize}
-    \item Item name:
-    \item Item start location ID:
-    \item Item target location ID:
+    \item Item name: "t-card"
+    \item Item target points: 5
     \end{itemize}
         \item For Item 2:
     \begin{itemize}
-    \item Item name:
-    \item Item start location ID:
-    \item Item target location ID:
+    \item Item name: "coffee"
+    \item Item target points: 5
     \end{itemize}
         \item For Item 3:
     \begin{itemize}
-    \item Item name:
-    \item Item start location ID:
-    \item Item target location ID:
+    \item Item name: "csc111 syllabus"
+    \item Item target points: 5
+    \end{itemize}
+            \item For Item 4:
+    \begin{itemize}
+    \item Item name: "charger"
+    \item Item target points: 25
+    \end{itemize}
+            \item For Item 5:
+    \begin{itemize}
+    \item Item name: "usb"
+    \item Item target points: 25
+    \end{itemize}
+            \item For Item 6:
+    \begin{itemize}
+    \item Item name: "bottle"
+    \item Item target points: 25
+    \end{itemize}
+            \item For Item 7:
+    \begin{itemize}
+    \item Item name: "assignment extension"
+    \item Item target points: 100
     \end{itemize}
     % Copy-paste the above if you have more items, to list ALL items
 \end{enumerate}
 
-    \item Exact command(s) that should be used to pick up an item (choose any one item for this example), and the command(s) used to use/drop the item (can copy the list you assigned to \texttt{inventory\_demo} in the \texttt{project1\_simulation.py} file)
-    \item Which parts of your code (file, class, function/method) are involved in handling the \texttt{inventory} command:
+    \item Exact command(s) that should be used to pick up an item (choose any one item for this example), and the command(s) used to use the item (can copy the list you assigned to \texttt{inventory\_demo} in the \texttt{project1\_simulation.py} file)\\
+    Most of the pickup commands we use are in the format of "pick *". This approach allows us to pre-process the information when receiving input. If the received information matches the comments for a location, it is considered valid input, and the item we pick up is the text following "pick". However, the drawback of this method is that it reduces the flexibility of the input.\\
+    \item Which parts of your code (file, class, function/method) are involved in handling the \texttt{inventory} command:\\
+    We use inventory as a list, which is an attribute of the player class. Initially, we tried using a set to hold the inventory to prevent picking up duplicate items. However, since a set cannot store instances of the Item class, we switched to using a list instead. The addition of items to the inventory is mainly handled by the adventure component. As mentioned earlier, pickup commands always start with "pick", so to add an item to the inventory, we simply append the substring from the fifth character to the end of the input string to the inventory list.
 \end{enumerate}
 
 \section*{Score}
 \begin{enumerate}
 
-    \item Briefly describe the way players can earn scores in your game. Include the first location in which they can increase their score, and the exact list of command(s) leading up to the score increase:
+    \item Briefly describe the way players can earn scores in your game. Include the first location in which they can increase their score, and the exact list of command(s) leading up to the score increase:\\
+    Our score calculation consists of two parts: inventory item bonuses and remaining time. Every item has a corresponding value. For example, a T-card is worth 5 points, a bottle is worth 25 points, and unlocking the hidden ending awards 100 points. We set a maximum of 60 steps, meaning if the player exceeds 60 steps, they will miss the assignment deadline and fail the game. However, completing the task early grants a bonus based on the remaining steps.The score formula is defined as: Score = Total inventory item points + (60 - current steps).\\
+    Here’s the implementation of our scoring system in code:\\
+    \begin{lstlisting}
+        def final_score(self, time_spent: int) -> int:
+        """
+        method to return the total score earned by player in the end of game
+        """
+        # the score coefficient of time
+        time_coe = 1
+        # the score coefficient of inventory number
+        item_score = 0
+        for item in self.inventory:
+            item_score += item.target_points
+        return time_coe * (self.time - time_spent) + item_score
+    \end{lstlisting}
 
 
     \item Copy the list you assigned to \texttt{scores\_demo} in the \texttt{project1\_simulation.py} file into this section of the report:
+    \begin{lstlisting}
+    scores_demo = ['go west', 'pick t-card']
+    expected_log = [5]
+    assert expected_log = = AdventureGameSimulation('game_data.json', 1, 
+                                              scores_demo, 5).get_curr_score()
+\end{lstlisting}
 
-
-    \item Which parts of your code (file, class, function/method) are involved in handling the \texttt{score} functionality:
+    \item Which parts of your code (file, class, function/method) are involved in handling the \texttt{score} functionality:\\
+    Our score calculation functionality is entirely within the player class, located in game\_entities.py. There are two methods for calculating the score: curr\_score, which calculates the total score of the items currently in the inventory, and final\_score, which is used for the final score calculation during the game's conclusion.
 \end{enumerate}
 
 \section*{Enhancements}
 \begin{enumerate}
-    \item Describe your enhancement \#1 here
+    \item Describe your enhancement \#1 Locations that require conditional access
     \begin{itemize}
-        \item Brief description of what the enhancement is (if it's a puzzle, also describe what steps the player must take to solve it):
-        \item Complexity level (choose from low/medium/high):
-        \item Reasons you believe this is the complexity level (e.g., mention implementation details, how much code did you have to add/change from the baseline, what challenges did you face, etc.)
+        \item Brief description of what the enhancement is: The most challenging and interesting part of this game is the design of areas that require special items to access. For example, to enter the MS dining hall, you must have a cup of coffee, and to enter the CS lab, you need a T-card. This adds not only narrative complexity but also significant implementation difficulty in the code.\\
+        \item Complexity level (choose from low/medium/high): HIGH
+        \item Reasons you believe this is the complexity level: To achieve this, we adjusted the design of the location class. We added an item attribute to store the item required to access a particular location. When the player attempts to enter a location, the game checks if they meet the entry conditions. If they do not, they are denied access and receive a message indicating the missing item.\\
+        The main challenge lies in ensuring that, when a player is not allowed to enter a location, the game log is not updated, and the scene does not automatically transition to the next location based on the predefined ID.
     \end{itemize}
 
+    \item Describe your enhancement \#2 various amount of items that can be picked up and interact with locations
+    \begin{itemize}
+        \item Brief description: in this game, except items that is comprehensive to win the game, we also provided a lot of other items to make the process of finding stuffs more challenging. In several location, players may need to find that cannot access several locations, since loss of several important items, even if these items are not directly related to win of game. Besides, these items also provide extra score when the game is ending. In other words, spending several steps/time to find out some items unrelated may earn more score than the fastest way to achieve.
+        \item Complexity level: LOW
+        \item Reasons: \\
+        this enhancement is easy to be implemented, and detailed coding method can be divided into two part. First, add the item information into game\_data.json, as well as where you can find them out (add 'pick xxx' command). Secondary, modify the description around these items, and lead player to know what may be found in several location. One more reason to us to develop suck enhancement is because we want our game process to be less tedious, since if whole process of game is to find three target items in such a 8 * 10 map, players may find that it is too hard to play this game. These unrelated items play a role of encouraging player to continue playing this game, as well as fake clues to make the game more interesting.\\
+        Actually, this enhancement is compared easy design to be made since it can be developed mostly referring code that is used to add necessary items in the map. However, to make these additional items be added more reasonable, we need to  consider the plot between the items and locations, as well as the density of items in each part of map, which are important to improve player's experience of playing.
+    \end{itemize}
+
+    \item Describe your enhancement \#3 Expansive Map and Challenging Puzzles
+    \begin{itemize}
+        \item Brief description of what the enhancement is: As mentioned earlier, a key feature of our game is the requirement for specific items to access certain locations. To enhance this aspect, we intentionally designed a large map to increase the challenge of finding the necessary items. However, the entire design is very logical. For example, you need food to enter the dining hall and a T-card to access the CS lab, scenarios that mirror real-life experiences. This design not only adds immersion but also extends the gameplay duration, preventing players from completing the game too quickly due to overly simple puzzles.
+        \item Complexity level (choose from low/medium/high): Medium
+        \item Reasons you believe this is the complexity level: We invested a significant amount of time in designing the map and storyline. The large map greatly increased our workload, requiring the creation of extensive game\_data. Since the maximum number of steps to win is quite high, we also needed more testing time to thoroughly check most locations and events.
+    \end{itemize}    
+
+   \item Describe your enhancement \#4 Interesting Hidden Ending
+    \begin{itemize}
+        \item Brief description of what the enhancement is: We designed a hidden ending in the game, offering players the opportunity to complete the game with a higher score. Unlocking this hidden ending is straightforward: players need to collect the csc111 syllabus from the table in the room. If any CSC111 student has read the syllabus carefully, they'll notice that the kind-hearted Sadia has outlined conditions for assignment extensions. By following the syllabus's instructions, players can visit Sadia’s office in the BA building to unlock the hidden ending: Assignment Extension!\\
+        We added this route as a tribute to Sadia for supporting our mental health by reducing the stress of strict assignment deadlines. With this feature, players can experience a more lighthearted and rewarding gameplay outcome. :)
+        \item Complexity level (choose from low/medium/high): Medium
+        \item Reasons you believe this is the complexity level: The implementation challenge lay in handling the early completion condition. Initially, we considered adding a tag to the relevant location that would be marked as "visited" upon access. The Check\_win method would then verify whether the tag had changed to "visited." However, this approach was overly complex. Instead, we opted for a simpler solution: we directly add the item "assignment extension" to the player's inventory and check for its presence in the check\_win method. This not only simplifies the code but also allows us to easily award bonus points for unlocking the hidden ending.
+
+    \end{itemize}    
+
+   \item Describe your enhancement \#5 Challenging Puzzle2
+    \begin{itemize}
+        \item Brief description of what the enhancement is: This puzzle is placed on the critical path to finding the USB drive. To enter the Engineering Lounge, players must correctly answer the following question: \\
+        A king has 1,000 barrels of wine, one of which is poisoned. Anyone who drinks the poisoned wine will die within 24 hours. The king has a banquet the next day, leaving only enough time for one round of testing. What is the minimum number of prisoners required to identify the poisoned barrel?\\      
+        This is one of my favorite classic binary puzzles, and I wanted to share it with everyone. I even once recorded an educational video about binary systems using this puzzle as an example.
+        \item Complexity level (choose from low/medium/high): Low
+        \item Reasons you believe this is the complexity level: Implementing this puzzle wasn't too difficult overall. The main challenge was determining how to verify the correct answer and transport the player to the next location. We solved this by embedding the correct answer in the location's comment. If the player inputs the correct comment, they are transported to the next location. However, as mentioned earlier, our game logic checks for the presence of the keywords "go" or "pick" in input commands to trigger location transitions. Therefore, entering just the answer, such as "10", would cause an error.\\
+        To fix this, we modified the comment to require the input "go 10" as the answer. Although this may look a bit odd, it effectively resolves the issue, allowing the player to proceed smoothly.
+    \end{itemize}    
     % Uncomment below section if you have more enhancements; copy-paste as needed
     %\item Describe your enhancement here
     %\begin{itemize}
