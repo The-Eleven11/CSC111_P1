@@ -235,10 +235,13 @@ if __name__ == "__main__":
                 else:
                     # fail to move, no change in location
                     print("ops, you may need below items to move to this area")
-                    print([item for item in location.items if item not in game.player.inventory])
+                    print([item for item in target_location.items if item not in game.player.inventory])
             # TODO: Add in code to deal with actions which do not change the location (e.g. taking or using an item)
             else:
-                game.player.inventory.append(game.get_item(choice[5:len(choice)]))
+                if choice[5:len(choice)] not in game.player.inventory:
+                    game.player.inventory.append(game.get_item(choice[5:len(choice)]))
+                else:
+                    print("You've already have such item")
             curr_time += 1
             print()
             # related to go some places

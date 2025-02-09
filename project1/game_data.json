@@ -37,7 +37,7 @@
     {
       "id": 4,
       "name": "Campus One 15th floor",
-      "brief_description": "TBA",
+      "brief_description": "You are on the 15th floor of Campus One. To the north is the elevator, to the east is the study room, and to the west is your dorm room.",
       "long_description": "You are on the 15th floor of Campus One. To the north is the elevator, to the east is the study room, and to the west is your dorm room.",
       "available_commands": {
         "go west": 1,
@@ -144,7 +144,7 @@
         "go west": 11,
         "pick bottle": 100
       },
-      "items": ["bottle"]
+      "items": []
     },
     {
       "id": 14,
