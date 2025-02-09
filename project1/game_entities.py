@@ -57,8 +57,6 @@ class Location:
     def __init__(self, location_id, brief_description, long_description, available_commands, items,
                  visited=False) -> None:
         """Initialize a new location.
-
-        # TODO Add more details here about the initialization if needed
         """
 
         self.id_num = location_id
@@ -74,10 +72,12 @@ class Item:
     """An item in our text adventure game world.
 
     Instance Attributes:
-        - # TODO Describe each instance attribute here
+    - name: name of item
+    - target_points: the score that will be earned once it is found by player
 
     Representation Invariants:
-        - # TODO
+    - name != ""
+    - target_points > 0
     """
 
     # NOTES:
@@ -89,8 +89,8 @@ class Item:
     # All item objects in your game MUST be represented as an instance of this class.
 
     name: str
-    start_position: int
-    target_position: int
+    # start_position: int
+    # target_position: int
     target_points: int
 
 
@@ -107,12 +107,27 @@ class Player:
     Representation Invariant:
 
     """
-    inventory: set
+    inventory: set[Item]
     time: int
 
     def __init__(self, time) -> None:
         self.inventory = set()
         self.time = time
+
+    def check_invertory(self) -> list:
+        """
+        to return a list of item stored in inventory
+        """
+        result = []
+        for item in self.inventory:
+            result.append(item)
+        return result
+
+    def check_win(self) -> bool:
+        """
+        return a bool value to determine whether the game is ended in advanced
+        """
+        # TODO
 
     def curr_score(self) -> int:
         """
@@ -120,7 +135,7 @@ class Player:
         """
         # the score coefficient of inventory number
         item_coe = 1
-        return  item_coe * len(self.inventory)
+        return item_coe * len(self.inventory)
 
     def final_score(self) -> int:
         """
@@ -129,8 +144,10 @@ class Player:
         # the score coefficient of time
         time_coe = 1
         # the score coefficient of inventory number
-        item_coe = 1
-        return time_coe * self.time + item_coe * len(self.inventory)
+        item_score = 0
+        for item in self.inventory:
+            item_score += item.target_points
+        return time_coe * self.time + item_score
 
 
 if __name__ == "__main__":
