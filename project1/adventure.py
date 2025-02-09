@@ -230,6 +230,7 @@ if __name__ == "__main__":
             else:
                 game.player.inventory.add(game.get_item(choice[5 | len(choice)]))
             curr_time += 1
+            print()
             # related to go some places
         game.ongoing = not game.player.check_win()
         if curr_time > time:
