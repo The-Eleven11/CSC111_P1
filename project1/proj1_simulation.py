@@ -23,7 +23,7 @@ This file is Copyright (c) 2025 CSC111 Teaching Team
 from __future__ import annotations
 from proj1_event_logger import Event, EventList
 from adventure import AdventureGame
-from game_entities import Location
+from game_entities import Location, Player
 
 
 class AdventureGameSimulation:
@@ -36,21 +36,39 @@ class AdventureGameSimulation:
     _events: EventList
 
     # TODO: Copy/paste your code from ex1_simulation below, and make adjustments as needed
-    def __init__(self, game_data_file: str, initial_location_id: int, commands: list[str]) -> None:
+    def __init__(self, game_data_file: str, initial_location_id: int, commands: list[str], time: int) -> None:
         """Initialize a new game simulation based on the given game data, that runs through the given commands.
 
         Preconditions:
         - len(commands) > 0
         - all commands in the given list are valid commands at each associated location in the game
         """
-        self._events = EventList()
-        self._game = AdventureGame(game_data_file, initial_location_id)
 
         # TODO: Add first event (initial location, no previous command)
         # Hint: self._game.get_location() gives you back the current location
 
         # TODO: Generate the remaining events based on the commands and initial location
         # Hint: Call self.generate_events with the appropriate arguments
+        player = Player(time)
+
+        self._events = EventList()
+        self._game = AdventureGame(game_data_file, initial_location_id, player)
+
+        # Add first event (initial location, no previous command)
+        # Hint: self._game.get_location() gives you back the current location
+        initial_location = self._game.get_location()
+        initial_event = Event(
+            id_num=initial_location.id_num,
+            description=initial_location.brief_description,
+            player=player,
+            next_command=None,
+            next=None,
+            prev=None
+        )
+        self._events.add_event(initial_event)
+        # Generate the remaining events based on the commands and initial location
+        # Hint: Call self.generate_events with the appropriate arguments
+        self.generate_events(commands, initial_location)
 
     def generate_events(self, commands: list[str], current_location: Location) -> None:
         """Generate all events in this simulation.
@@ -64,6 +82,29 @@ class AdventureGameSimulation:
         #  it to self._events.
         # Hint: current_location.available_commands[command] will return the next location ID
         # which executing <command> while in <current_location_id> leads to
+        for command in commands:
+            next_location = current_location
+            if command.__contains__("go"):
+                if all(item in self._game.player.inventory for item in current_location.items):
+                    # move fit condition
+                    next_location_id = current_location.available_commands[command]
+                    next_location = self._game.get_location(next_location_id)
+                else:
+                    # fail to move, no change in location
+                    print("ops, you may need below items to move to this area")
+                    print([item for item in current_location.items if item not in self._game.player.inventory])
+            else:
+                self._game.player.inventory.add(self._game.get_item(command[5 | len(command)]))
+            next_event = Event(
+                id_num=next_location.id_num,
+                description=next_location.brief_description,
+                next_command=command,
+                player=self._game.player,
+                next=None,
+                prev=None
+            )
+            self._events.add_event(next_event, command)
+            current_location = next_location
 
     def get_id_log(self) -> list[int]:
         """

@@ -158,7 +158,7 @@ if __name__ == "__main__":
         # TODO: Add new Event to game log to represent current game location
         #  Note that the <choice> variable should be the command which led to this event
         # YOUR CODE HERE
-        event = Event(location.id_num, location.long_description, game.player)
+        event = Event(location.id_num, location.brief_description, game.player)
         game_log.add_event(event)
         # TODO: Depending on whether or not it's been visited before,
         #  print either full description (first time visit) or brief description (every subsequent visit) of location
@@ -213,10 +213,11 @@ if __name__ == "__main__":
             if choice == 'quit':
                 print("user command: quit, game is ended")
                 print("final score gained:" + str(game.player.curr_score()))
+                exit()
         else:
             # Handle non-menu actions
             # TODO: Add in code to deal with special locations (e.g. puzzles) as needed for your game
-            if choice.__contains__(choice):
+            if choice.__contains__("go"):
                 if all(item in game.player.inventory for item in location.items):
                     # move fit condition
                     result = location.available_commands[choice]
