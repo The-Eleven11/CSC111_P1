@@ -26,11 +26,13 @@
       "id": 3,
       "name": "Dorm room Desk",
       "brief_description": "Your desk is very cluttered, your dorm door is to the east",
-      "long_description": "Your desk is very cluttered, but you can still spot your T-card, the CS111 syllabus, and a mouse on it. Type the name of an item to pick it up. Your dorm door is to the east.",
+      "long_description": "Your desk is very cluttered, but you can still spot your T-card, the CS111 syllabus, and a mouse on it. Type \"pick *\" the name of an item to pick it up. Your dorm door is to the east.",
       "available_commands": {
-        "go east": 1
+        "go east": 1,
+        "pick T-card": 100,
+        "pick CSC111 syllabus": 100
       },
-      "items": ["T-card", "CSC111 syllabus"]
+      "items": []
     },
     {
       "id": 4,
@@ -113,15 +115,15 @@
     {
       "id": 11,
       "name": "MS Dining Hall",
-      "brief_description": "This is the MS dining hall. Due to limited seating, only students with food are allowed inside. Since you currently have no food, you do not have access to enter. Type \"go west\" to return to the Starbucks.",
-      "long_description": "This is the MS dining hall. Due to limited seating, only students with food are allowed inside. Since you currently have no food, you do not have access to enter. Type \"go west\" to return to the Starbucks.",
+      "brief_description": "Due to limited seating, the MS dining hall only allows students with food or drinks to enter. Carrying the coffee you bought from RB Starbucks, you gain access without any issues. There are three tables here—one to the north, one to the south, and one to the east. You can head west to return to the MS Starbucks.",
+      "long_description": "Due to limited seating, the MS dining hall only allows students with food or drinks to enter. Carrying the coffee you bought from RB Starbucks, you gain access without any issues. There are three tables here—one to the north, one to the south, and one to the east. You can head west to return to the MS Starbucks.",
       "available_commands": {
         "go north": 12,
         "go south": 14,
         "go west": 10,
         "go east": 13
       },
-      "items": []
+      "items": ["coffee"]
     },
     {
       "id": 12,
@@ -136,10 +138,11 @@
     {
       "id": 13,
       "name": "MS Desk2",
-      "brief_description": "You found your missing water bottle on this table. Fortunately, no one took it. Type \"bottle\" to pick up the water bottle or \"go west\" to return to the dining hall.",
-      "long_description": "You found your missing water bottle on this table. Fortunately, no one took it. Type \"bottle\" to pick up the water bottle or \"go west\" to return to the dining hall.",
+      "brief_description": "You found your missing water bottle on this table. Fortunately, no one took it. Type \"pick bottle\" to pick up the water bottle or \"go west\" to return to the dining hall.",
+      "long_description": "You found your missing water bottle on this table. Fortunately, no one took it. Type \"pick bottle\" to pick up the water bottle or \"go west\" to return to the dining hall.",
       "available_commands": {
-        "go west": 11
+        "go west": 11,
+        "pick bottle": 100
       },
       "items": ["bottle"]
     },
@@ -167,7 +170,7 @@
     {
       "id": 16,
       "name": "RB Lobby",
-      "brief_description": "TBA",
+      "brief_description": "This is the RB lobby. You can head north to reach the second floor of RB, south back to entry, west to Study Room, or east to Front desk.",
       "long_description": "This is the RB lobby, where books and computers are displayed. You can head north to reach the second floor of RB, south back to entry, west to Study Room, or east to Front desk.",
       "available_commands": {
         "go north": 18,
@@ -175,145 +178,154 @@
         "go west": 17,
         "go east": 19
       },
-      "items": ["toonie"]
+      "items": []
     },
     {
       "id": 17,
       "name": "RB Study Room",
-      "brief_description": "TBA",
-      "long_description": "TBA",
+      "brief_description": "You find nothing here. You can head east to return to the RB lobby.",
+      "long_description": "This is a place where you often come to study, but you and your teammates avoid holding discussions here since loud talking is not allowed. After searching the area, you find nothing of interest. You can head east to return to the RB lobby.",
       "available_commands": {
         "go east": 16
       },
-      "items": ["toonie"]
+      "items": []
     },
     {
       "id": 18,
-      "name": "RB Elevator",
-      "brief_description": "TBA",
-      "long_description": "TBA",
+      "name": "RB 2nd Floor",
+      "brief_description": "This is the second floor of RB. You can head north to reach Starbucks or south to return to the RB lobby.",
+      "long_description": "This is the second floor of RB. You can head north to reach Starbucks or south to return to the RB lobby.",
       "available_commands": {
         "go north": 20,
         "go south": 16
       },
-      "items": ["toonie"]
+      "items": []
     },
     {
       "id": 19,
-      "name": "RB Self-Study Room",
-      "brief_description": "TBA",
-      "long_description": "TBA",
+      "name": "RB Front Desk",
+      "brief_description": "There is a staff member here. You ask if they have found a lost USB drive, but unfortunately, they haven't seen any. You can head west to return to the RB lobby.",
+      "long_description": "There is a staff member here. You ask if they have found a lost USB drive, but unfortunately, they haven't seen any. You can head west to return to the RB lobby.",
       "available_commands": {
         "go west": 16
       },
-      "items": ["toonie"]
+      "items": []
     },
     {
       "id": 20,
       "name": "RB Starbucks",
-      "brief_description": "TBA",
-      "long_description": "TBA",
+      "brief_description": "Here is Starbucks at RB. You can type \"pick coffee\" to get a cup of coffee or head south to return to the second floor.",
+      "long_description": "This is the Starbucks you visit most often since your meal plan can be used here. You've been walking for a long time and would love to take a break with a cup of coffee, but your deadline is looming. At this moment, a friendly barista asks what you'd like to order. You can type \"pick coffee\" to get a cup of coffee or head south to return to the second floor.",
       "available_commands": {
-        "go south": 18
+        "go south": 18,
+        "pick coffee": 100
       },
-      "items": ["toonie"]
+      "items": []
     },
     {
       "id": 21,
       "name": "BA Entry",
-      "brief_description": "TBA",
-      "long_description": "TBA",
+      "brief_description": "Welcome to the Bahen Centre, the hub of the computer science department. You can head west to reach the BA lobby or east to return to St. George Street.",
+      "long_description": "Welcome to the Bahen Centre, the hub of the computer science department. You can head west to reach the BA lobby or east to return to St. George Street.",
       "available_commands": {
         "go west": 22,
         "go east": 8
       },
-      "items": ["toonie"]
+      "items": []
     },
     {
       "id": 22,
       "name": "BA Lobby",
-      "brief_description": "TBA",
-      "long_description": "TBA",
+      "brief_description": "This is the BA lobby. You can head west to the second floor, south to the Engineering Lounge, or east to return to the BA entrance.",
+      "long_description": "This is the BA lobby. As a CS student, being here feels like a fish returning to the sea—familiar and comforting. You and your friends completed your project here, though you can’t quite remember the exact spot. Explore boldly! You can head west to the second floor, south to the Engineering Lounge, or east to return to the BA entrance.",
       "available_commands": {
         "go south": 23,
         "go west": 24,
         "go east": 21
       },
-      "items": ["toonie"]
+      "items": []
     },
     {
       "id": 23,
-      "name": "BA Self-Study Room",
-      "brief_description": "TBA",
-      "long_description": "TBA",
+      "name": "BA Engineering Lounge",
+      "brief_description": "Answer the question or head north to return to the BA lobby.",
+      "long_description": "This is the Engineering Lounge. You vaguely recall that this is where you and your friends completed your project, as it was quiet and mostly empty. Unexpectedly, the door is now locked, and since you're not an engineering student, you don't have access to enter. In your quest to find your USB drive, you have no choice but to seek help from a student inside.\n\nKnock, knock. You tap on the door twice. Creak, the door opens, and a student from engineering appears. You quickly ask if they can let you in. He gives you a skeptical look and says, \"Are you really a UofT student? You know, the students who can enter BA are the smartest in computer science, engineering, and math.\"\n\nYou rush to prove yourself. \"I'm a first-year CS student. I might have dropped my USB drive inside. Could you let me go in and grab it?\"\n\nStill doubtful, the engineering student replies, \"I'll test you with a question. If you can solve it, I'll believe you're a UofT student. Here's the question: A king has 1,000 barrels of wine, one of which is poisoned. Anyone who drinks the poisoned wine will die exactly 24 hours later. The king has a banquet the next day, so he only has time to perform one round of testing. What is the minimum number of prisoners required to determine which barrel contains the poison?\"\n\nHe adds, \"Since you say you're a computer science student, here's a hint: the solution is related to binary numbers.\"\n\nAfter a moment of thought, you come up with an answer. (Please enter your answer directly or head north to return to the BA lobby.)",
       "available_commands": {
-        "go north": 22
+        "go north": 22,
+        "10": 30
 
       },
-      "items": ["toonie"]
+      "items": []
     },
     {
       "id": 24,
-      "name": "BA Elevator",
-      "brief_description": "TBA",
-      "long_description": "TBA",
+      "name": "BA 2nd floor",
+      "brief_description": "This is the second floor of the Bahen Centre. You can head north to reach Sadia's office, west to enter the CS lab or east to lobby.",
+      "long_description": "This is the second floor of the Bahen Centre. You often come here because the computer science department offers free printing for students, and you frequently attend Sadia's office hours for help. You suddenly remember that you had brought your laptop to the CS lab to study, and it seems you might have left your charger there. You can head north to reach Sadia's office, west to enter the CS lab or east to lobby.",
       "available_commands": {
         "go north": 25,
         "go west": 26,
         "go east": 22
       },
-      "items": ["toonie"]
+      "items": []
     },
     {
       "id": 25,
-      "name": "BA Office",
-      "brief_description": "TBA",
-      "long_description": "TBA",
+      "name": "BA Sadia Office",
+      "brief_description": "You walk into Sadia's office and pull out the \"CSC111 Syllabus\" you brought from your dorm. You explain to Sadia that you accidentally lost the USB drive containing your project and ask if it's possible to extend the deadline by one more day. Sadia smiles and says, \"What reason do you have for me to grant you an extension?\"\n\nFeeling apologetic, you point to the \"Special consideration for other homework\" section of the syllabus and explain that you just need a little extra time to finish the task. Kind-hearted as always, Sadia agrees to your request.\n\n **Congratulations! You've unlocked the hidden ending: Assignment Extension!**",
+      "long_description": "You walk into Sadia's office and pull out the \"CSC111 Syllabus\" you brought from your dorm. You explain to Sadia that you accidentally lost the USB drive containing your project and ask if it's possible to extend the deadline by one more day. Sadia smiles and says, \"What reason do you have for me to grant you an extension?\"\n\nFeeling apologetic, you point to the \"Special consideration for other homework\" section of the syllabus and explain that you just need a little extra time to finish the task. Kind-hearted as always, Sadia agrees to your request.\n\n **Congratulations! You've unlocked the hidden ending: Assignment Extension!**",
       "available_commands": {
         "go south": 24
       },
-      "items": ["toonie"]
+      "items": ["CSC111 syllabus"]
     },
     {
       "id": 26,
       "name": "BA CS Lab",
-      "brief_description": "TBA",
-      "long_description": "TBA",
+      "brief_description": "Type \"pick charger\" to retrieve your charger or head east to return to the second floor of the Bahen Centre.",
+      "long_description": "As a computer science student, you successfully use your T-card to enter the CS Lab. Luckily, you find your charger in the lost and found corner! Type \"pick charger\" to retrieve your charger or head east to return to the second floor of the Bahen Centre.",
       "available_commands": {
-        "go west": 27,
-        "go east": 24
+        "go east": 24,
+        "pick charger": 100
       },
-      "items": ["toonie"]
+      "items": ["T-card"]
     },
     {
-      "id": 27,
-      "name": "BA Lost and Found",
-      "brief_description": "TBA",
-      "long_description": "TBA",
+      "id": 30,
+      "name": "BA Engineering Lounge",
+      "brief_description": "Inside, you find your lost USB drive! Type \"pick USB\" to retrieve it or head north to return to the BA lobby.",
+      "long_description": "You're smart enough to figure out the solution. You assign each of the 1,000 barrels of wine a binary number: the first barrel is 1, the second is 10, the third is 11, the fourth is 100, the fifth is 101, and so on. Since 2^10 =1024, all 1,000 barrels can be represented using just 10 bits in binary.\n\nThe engineering student is impressed and grants you access to the Engineering Lounge. Inside, you find your lost USB drive! Type \"pick USB\" to retrieve it or head north to return to the BA lobby.",
       "available_commands": {
-        "go east": 26
+        "go north": 22,
+        "pick USB": 100
       },
-      "items": ["toonie"]
-    },
-    {
-      "id": 1,
-      "name": "Bahen 1F",
-      "brief_description": "TBA",
-      "long_description": "TBA",
-      "available_commands": {
-        "go south": 4,
-        "go east": 2
-      },
-      "items": ["toonie"]
+      "items": []
     }
   ],
   "items": [
     {
-      "name": "toonie",
-      "description": "There is a toonie on the ground. Someone must have dropped it.",
-      "start_position": 1,
-      "target_position": 4,
+      "name": "T-card",
       "target_points": 5
+    },
+    {
+      "name": "coffee",
+      "target_points": 5
+    },
+    {
+      "name": "CSC111 syllabus",
+      "target_points": 5
+    },
+    {
+      "name": "USB",
+      "target_points": 25
+    },
+    {
+      "name": "charger",
+      "target_points": 25
+    },
+    {
+      "name": "bottle",
+      "target_points": 25
     }
   ]
 }
