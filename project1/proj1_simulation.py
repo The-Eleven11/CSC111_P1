@@ -34,9 +34,9 @@ class AdventureGameSimulation:
     #   - _events: A collection of the events to process during the simulation.
     _game: AdventureGame
     _events: EventList
-    _player = Player
+    _player : Player
 
-    # TODO: Copy/paste your code from ex1_simulation below, and make adjustments as needed
+    # Copy/paste your code from ex1_simulation below, and make adjustments as needed
     def __init__(self, game_data_file: str, initial_location_id: int, commands: list[str], time: int) -> None:
         """Initialize a new game simulation based on the given game data, that runs through the given commands.
 
@@ -45,10 +45,10 @@ class AdventureGameSimulation:
         - all commands in the given list are valid commands at each associated location in the game
         """
 
-        # TODO: Add first event (initial location, no previous command)
+        # Add first event (initial location, no previous command)
         # Hint: self._game.get_location() gives you back the current location
 
-        # TODO: Generate the remaining events based on the commands and initial location
+        # Generate the remaining events based on the commands and initial location
         # Hint: Call self.generate_events with the appropriate arguments
         self._player = Player(time)
 
@@ -79,7 +79,7 @@ class AdventureGameSimulation:
         - all commands in the given list are valid commands at each associated location in the game
         """
 
-        # TODO: Complete this method as specified. For each command, generate the event and add
+        # Complete this method as specified. For each command, generate the event and add
         #  it to self._events.
         # Hint: current_location.available_commands[command] will return the next location ID
         # which executing <command> while in <current_location_id> leads to
@@ -90,10 +90,10 @@ class AdventureGameSimulation:
                 if all(item in conditional_item for item in target_location.items):
                     # move fit condition
                     current_location = target_location
-                else:
+                # else:
                     # fail to move, no change in location
-                    print("ops, you may need below items to move to this area")
-                    print([item for item in target_location.items if item not in self._game.player.inventory])
+                    # print("ops, you may need below items to move to this area")
+                    # print([item for item in target_location.items if item not in self._game.player.inventory])
             else:
                 self._game.player.inventory.append(self._game.get_item(command[5:len(command)]))
             event = Event(current_location.id_num, current_location.brief_description, self._game.player)
@@ -147,7 +147,7 @@ if __name__ == "__main__":
     #     'disable': ['R1705', 'E9998', 'E9999']
     # })
 
-    # TODO: Modify the code below to provide a walkthrough of commands needed to win and lose the game
+    # Modify the code below to provide a walkthrough of commands needed to win and lose the game
     win_walkthrough = ["go west", "pick csc111 syllabus", "go east", "go east", "go north", "go 1", "go north",
                        "go west", "go west", "go west", "go north", "take assignment extension"]
     # Create a list of all the commands needed to walk through your game to win it
@@ -164,8 +164,8 @@ if __name__ == "__main__":
     assert expected_log == AdventureGameSimulation('game_data.json', 1, lose_demo,
                                                    5).get_id_log()
 
-    # TODO: Add code below to provide walkthroughs that show off certain features of the game
-    # TODO: Create a list of commands involving visiting locations, picking up items, and then
+    # Add code below to provide walkthroughs that show off certain features of the game
+    # Create a list of commands involving visiting locations, picking up items, and then
     #   checking the inventory, your list must include the "inventory" command at least once
     inventory_demo = ['go west', 'pick t-card']
     expected_log = [Item(name='t-card', target_points=5)]
