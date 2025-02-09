@@ -19,6 +19,7 @@ please consult our Course Syllabus.
 This file is Copyright (c) 2025 CSC111 Teaching Team
 """
 from dataclasses import dataclass
+from typing import Optional
 
 
 @dataclass
@@ -26,10 +27,19 @@ class Location:
     """A location in our text adventure game world.
 
     Instance Attributes:
-        - # TODO Describe each instance attribute here
+    - id_num: id of location
+    - brief_description: brief description of location
+    - long_description: complete description of location
+    - available commands: a dictionary of commands that is available in this location
+    - items: items that can be found/interact in this location
+    - visited: whether this location is arrived
 
     Representation Invariants:
-        - # TODO Describe any necessary representation invariants
+    - self.id_num > 0
+    - self.brief_description != ""
+    - self.long_description != ""
+    - len(self.available commands) > 0
+
     """
 
     # This is just a suggested starter class for Location.
@@ -37,12 +47,16 @@ class Location:
     #
     # The only thing you must NOT change is the name of this class: Location.
     # All locations in your game MUST be represented as an instance of this class.
+    id_num: int
+    brief_description: str
+    long_description: str
+    available_commands: dict[str, int]
+    items: list
+    visited: bool
 
     def __init__(self, location_id, brief_description, long_description, available_commands, items,
                  visited=False) -> None:
         """Initialize a new location.
-
-        # TODO Add more details here about the initialization if needed
         """
 
         self.id_num = location_id
@@ -58,10 +72,12 @@ class Item:
     """An item in our text adventure game world.
 
     Instance Attributes:
-        - # TODO Describe each instance attribute here
+    - name: name of item
+    - target_points: the score that will be earned once it is found by player
 
     Representation Invariants:
-        - # TODO Describe any necessary representation invariants
+    - name != ""
+    - target_points > 0
     """
 
     # NOTES:
@@ -73,8 +89,8 @@ class Item:
     # All item objects in your game MUST be represented as an instance of this class.
 
     name: str
-    start_position: int
-    target_position: int
+    # start_position: int
+    # target_position: int
     target_points: int
 
 
@@ -82,6 +98,57 @@ class Item:
 # - Puzzle class to represent special locations (could inherit from Location class if it seems suitable)
 # - Player class
 # etc.
+class Player:
+    """
+    this class represent the player in this game
+
+    Instance Attribute:
+
+    Representation Invariant:
+
+    """
+    inventory: set[Item]
+    time: int
+
+    def __init__(self, time) -> None:
+        self.inventory = set()
+        self.time = time
+
+    def check_invertory(self) -> list:
+        """
+        to return a list of item stored in inventory
+        """
+        result = []
+        for item in self.inventory:
+            result.append(item)
+        return result
+
+    def check_win(self) -> bool:
+        """
+        return a bool value to determine whether the game is ended in advanced
+        """
+        # TODO
+
+    def curr_score(self) -> int:
+        """
+        method to return curent score earned by player during the game
+        """
+        # the score coefficient of inventory number
+        item_coe = 1
+        return item_coe * len(self.inventory)
+
+    def final_score(self) -> int:
+        """
+        method to return the total score earned by player in the end of game
+        """
+        # the score coefficient of time
+        time_coe = 1
+        # the score coefficient of inventory number
+        item_score = 0
+        for item in self.inventory:
+            item_score += item.target_points
+        return time_coe * self.time + item_score
+
 
 if __name__ == "__main__":
     pass

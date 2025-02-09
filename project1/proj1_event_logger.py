@@ -48,9 +48,9 @@ class Event:
 
     id_num: int
     description: str
-    next_command: str
-    next: Event
-    prev: Event
+    next_command: Optional[str] = None
+    next: Optional[Event] = None
+    prev: Optional[Event] = None
 
 
 class EventList:
@@ -58,11 +58,12 @@ class EventList:
     A linked list of game events.
 
     Instance Attributes:
-        first is Event object or None
-        last is Event object or None
+    - first: the first Event of the EventList, leave None if EventList is empty
+    - last: the last Event of the EventList, leave None if EventList is empty
 
     Representation Invariants:
-        - # TODO add any appropriate representation invariants, if needed
+    - not self.is_empty() or ((self.first is None) and (self.last is None))
+    - (not self.first is None or self.last is None) and (not self.last is None or self.first is None)
     """
     first: Optional[Event]
     last: Optional[Event]
@@ -104,7 +105,6 @@ class EventList:
             self.last.next_command = command
 
         self.last = event
-
 
     def remove_last_event(self) -> None:
         """Remove the last event from this event list.
