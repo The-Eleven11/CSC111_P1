@@ -19,7 +19,6 @@ please consult our Course Syllabus.
 This file is Copyright (c) 2025 CSC111 Teaching Team
 """
 from dataclasses import dataclass
-from typing import Optional
 
 
 @dataclass
@@ -143,8 +142,8 @@ class Player:
         method to return curent score earned by player during the game
         """
         # the score coefficient of inventory number
-        item_coe = 1
-        return item_coe * len(self.inventory)
+        score_sum_far = sum(x.target_points for x in self.inventory)
+        return score_sum_far
 
     def final_score(self, time_spent: int) -> int:
         """
