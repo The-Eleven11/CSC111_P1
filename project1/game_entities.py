@@ -107,11 +107,11 @@ class Player:
     Representation Invariant:
 
     """
-    inventory: set[Item]
+    inventory: []
     time: int
 
     def __init__(self, time) -> None:
-        self.inventory = set()
+        self.inventory = []
         self.time = time
 
     def check_invertory(self) -> list:
@@ -127,7 +127,16 @@ class Player:
         """
         return a bool value to determine whether the game is ended in advanced
         """
-        # TODO
+        # if "charger" in self.inventory and "usb" in self.inventory and "bottle" in self.inventory:
+        #     return True
+        # elif "assignment extension" in self.inventory:
+        #     return True
+        # return False
+        item_name_lst = []
+        for item in self.inventory:
+            item_name_lst.append(item.name)
+        return (all(x in item_name_lst for x in ["charger", "usb", "bottle"])
+                or "assignment extension" in item_name_lst)
 
     def curr_score(self) -> int:
         """

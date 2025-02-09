@@ -3,7 +3,7 @@
     {
       "id": 1,
       "name": "Campus One Dorm room",
-      "brief_description": "TBA",
+      "brief_description": "Here is your dorm room. To the west is your desk, to the south is your bed, and to the east is your dorm door. Beyond that door, you'll reach the 15th floor of Campus One.",
       "long_description": "You wake up in your dorm room, which is in complete disarray. However, your anxiety at this moment surpasses the mess. You know you need to find your laptop charger, the USB drive that stores all your project code, and your water bottle before the deadline hits. To the west is your desk, to the south is your bed, and to the east is your dorm door. Beyond that door, you'll reach the 15th floor of Campus One.",
       "available_commands": {
       "go south": 2,
@@ -26,11 +26,11 @@
       "id": 3,
       "name": "Dorm room Desk",
       "brief_description": "Your desk is very cluttered, your dorm door is to the east",
-      "long_description": "Your desk is very cluttered, but you can still spot your T-card, the CS111 syllabus, and a mouse on it. Type \"pick *\" the name of an item to pick it up. Your dorm door is to the east.",
+      "long_description": "Your desk is very cluttered, but you can still spot your t-card, the csc111 syllabus, and a mouse on it. Type \"pick *\" the name of an item to pick it up. Your dorm door is to the east.",
       "available_commands": {
         "go east": 1,
-        "pick T-card": 100,
-        "pick CSC111 syllabus": 100
+        "pick t-card": 100,
+        "pick csc111 syllabus": 100
       },
       "items": []
     },
@@ -59,11 +59,11 @@
     {
       "id": 6,
       "name": "Campus One Elevator",
-      "brief_description": "Welcome aboard the Campus One elevator. There are many buttons inside. You know that \"1\" takes you to the lobby, and \"15\" is the floor where your room is located. Type \"1\" or \"15\" to go to the corresponding floor.",
-      "long_description": "Welcome aboard the Campus One elevator. There are many buttons inside. You know that \"1\" takes you to the lobby, and \"15\" is the floor where your room is located. Type \"1\" or \"15\" to go to the corresponding floor.",
+      "brief_description": "Welcome aboard the Campus One elevator. There are many buttons inside. You know that \"1\" takes you to the lobby, and \"15\" is the floor where your room is located. Type \"go 1\" or \"go 15\" to go to the corresponding floor.",
+      "long_description": "Welcome aboard the Campus One elevator. There are many buttons inside. You know that \"1\" takes you to the lobby, and \"15\" is the floor where your room is located. Type \"go 1\" or \"go 15\" to go to the corresponding floor.",
       "available_commands": {
-        "15": 4,
-        "1": 7
+        "go 15": 4,
+        "go 1": 7
       },
       "items": []
     },
@@ -249,11 +249,10 @@
       "id": 23,
       "name": "BA Engineering Lounge",
       "brief_description": "Answer the question or head north to return to the BA lobby.",
-      "long_description": "This is the Engineering Lounge. You vaguely recall that this is where you and your friends completed your project, as it was quiet and mostly empty. Unexpectedly, the door is now locked, and since you're not an engineering student, you don't have access to enter. In your quest to find your USB drive, you have no choice but to seek help from a student inside.\n\nKnock, knock. You tap on the door twice. Creak, the door opens, and a student from engineering appears. You quickly ask if they can let you in. He gives you a skeptical look and says, \"Are you really a UofT student? You know, the students who can enter BA are the smartest in computer science, engineering, and math.\"\n\nYou rush to prove yourself. \"I'm a first-year CS student. I might have dropped my USB drive inside. Could you let me go in and grab it?\"\n\nStill doubtful, the engineering student replies, \"I'll test you with a question. If you can solve it, I'll believe you're a UofT student. Here's the question: A king has 1,000 barrels of wine, one of which is poisoned. Anyone who drinks the poisoned wine will die exactly 24 hours later. The king has a banquet the next day, so he only has time to perform one round of testing. What is the minimum number of prisoners required to determine which barrel contains the poison?\"\n\nHe adds, \"Since you say you're a computer science student, here's a hint: the solution is related to binary numbers.\"\n\nAfter a moment of thought, you come up with an answer. (Please enter your answer directly or head north to return to the BA lobby.)",
+      "long_description": "This is the Engineering Lounge. You vaguely recall that this is where you and your friends completed your project, as it was quiet and mostly empty. Unexpectedly, the door is now locked, and since you're not an engineering student, you don't have access to enter. In your quest to find your USB drive, you have no choice but to seek help from a student inside.\n\nKnock, knock. You tap on the door twice. Creak, the door opens, and a student from engineering appears. You quickly ask if they can let you in. He gives you a skeptical look and says, \"Are you really a UofT student? You know, the students who can enter BA are the smartest in computer science, engineering, and math.\"\n\nYou rush to prove yourself. \"I'm a first-year CS student. I might have dropped my USB drive inside. Could you let me go in and grab it?\"\n\nStill doubtful, the engineering student replies, \"I'll test you with a question. If you can solve it, I'll believe you're a UofT student. Here's the question: A king has 1,000 barrels of wine, one of which is poisoned. Anyone who drinks the poisoned wine will die exactly 24 hours later. The king has a banquet the next day, so he only has time to perform one round of testing. What is the minimum number of prisoners required to determine which barrel contains the poison?\"\n\nHe adds, \"Since you say you're a computer science student, here's a hint: the solution is related to binary numbers.\"\n\nAfter a moment of thought, you come up with an answer. (Please enter your answer with\"go *your answer*\" or head north to return to the BA lobby.)",
       "available_commands": {
         "go north": 22,
-        "10": 30
-
+        "go 10": 30
       },
       "items": []
     },
@@ -272,12 +271,12 @@
     {
       "id": 25,
       "name": "BA Sadia Office",
-      "brief_description": "You walk into Sadia's office and pull out the \"CSC111 Syllabus\" you brought from your dorm. You explain to Sadia that you accidentally lost the USB drive containing your project and ask if it's possible to extend the deadline by one more day. Sadia smiles and says, \"What reason do you have for me to grant you an extension?\"\n\nFeeling apologetic, you point to the \"Special consideration for other homework\" section of the syllabus and explain that you just need a little extra time to finish the task. Kind-hearted as always, Sadia agrees to your request.\n\n **Congratulations! You've unlocked the hidden ending: Assignment Extension!**",
-      "long_description": "You walk into Sadia's office and pull out the \"CSC111 Syllabus\" you brought from your dorm. You explain to Sadia that you accidentally lost the USB drive containing your project and ask if it's possible to extend the deadline by one more day. Sadia smiles and says, \"What reason do you have for me to grant you an extension?\"\n\nFeeling apologetic, you point to the \"Special consideration for other homework\" section of the syllabus and explain that you just need a little extra time to finish the task. Kind-hearted as always, Sadia agrees to your request.\n\n **Congratulations! You've unlocked the hidden ending: Assignment Extension!**",
+      "brief_description": "You walk into Sadia's office and pull out the \"CSC111 Syllabus\" you brought from your dorm. You explain to Sadia that you accidentally lost the USB drive containing your project and ask if it's possible to extend the deadline by one more day. Sadia smiles and says, \"What reason do you have for me to grant you an extension?\"\n\nFeeling apologetic, you point to the \"Special consideration for other homework\" section of the syllabus and explain that you just need a little extra time to finish the task. Kind-hearted as always, Sadia agrees to your request.\n\n **Congratulations! You've unlocked the hidden ending: Assignment Extension!** Type \\\"take assignment extension\\\" to win the game!\"",
+      "long_description": "You walk into Sadia's office and pull out the \"CSC111 Syllabus\" you brought from your dorm. You explain to Sadia that you accidentally lost the USB drive containing your project and ask if it's possible to extend the deadline by one more day. Sadia smiles and says, \"What reason do you have for me to grant you an extension?\"\n\nFeeling apologetic, you point to the \"Special consideration for other homework\" section of the syllabus and explain that you just need a little extra time to finish the task. Kind-hearted as always, Sadia agrees to your request.\n\n **Congratulations! You've unlocked the hidden ending: Assignment Extension!** Type \"take assignment extension\" to win the game!",
       "available_commands": {
-        "go south": 24
+        "take assignment extension": 100
       },
-      "items": ["CSC111 syllabus"]
+      "items": ["csc111 syllabus"]
     },
     {
       "id": 26,
@@ -288,23 +287,23 @@
         "go east": 24,
         "pick charger": 100
       },
-      "items": ["T-card"]
+      "items": ["t-card"]
     },
     {
       "id": 30,
       "name": "BA Engineering Lounge",
-      "brief_description": "Inside, you find your lost USB drive! Type \"pick USB\" to retrieve it or head north to return to the BA lobby.",
-      "long_description": "You're smart enough to figure out the solution. You assign each of the 1,000 barrels of wine a binary number: the first barrel is 1, the second is 10, the third is 11, the fourth is 100, the fifth is 101, and so on. Since 2^10 =1024, all 1,000 barrels can be represented using just 10 bits in binary.\n\nThe engineering student is impressed and grants you access to the Engineering Lounge. Inside, you find your lost USB drive! Type \"pick USB\" to retrieve it or head north to return to the BA lobby.",
+      "brief_description": "Inside, you find your lost USB drive! Type \"pick usb\" to retrieve it or head north to return to the BA lobby.",
+      "long_description": "You're smart enough to figure out the solution. You assign each of the 1,000 barrels of wine a binary number: the first barrel is 1, the second is 10, the third is 11, the fourth is 100, the fifth is 101, and so on. Since 2^10 =1024, all 1,000 barrels can be represented using just 10 bits in binary.\n\nThe engineering student is impressed and grants you access to the Engineering Lounge. Inside, you find your lost USB drive! Type \"pick usb\" to retrieve it or head north to return to the BA lobby.",
       "available_commands": {
         "go north": 22,
-        "pick USB": 100
+        "pick usb": 100
       },
       "items": []
     }
   ],
   "items": [
     {
-      "name": "T-card",
+      "name": "t-card",
       "target_points": 5
     },
     {
@@ -312,11 +311,11 @@
       "target_points": 5
     },
     {
-      "name": "CSC111 syllabus",
+      "name": "csc111 syllabus",
       "target_points": 5
     },
     {
-      "name": "USB",
+      "name": "usb",
       "target_points": 25
     },
     {
@@ -326,6 +325,10 @@
     {
       "name": "bottle",
       "target_points": 25
+    },
+    {
+      "name": "assignment extension",
+      "target_points": 100
     }
   ]
 }
