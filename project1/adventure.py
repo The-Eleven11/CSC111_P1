@@ -56,7 +56,7 @@ class AdventureGame:
     ongoing: bool  # Suggested attribute, can be removed
     player: Player
 
-    def __init__(self, game_data_file: str, initial_location_id: int, player: Player) -> None:
+    def __init__(self, game_data_file: str, initial_location_id: int, init_player: Player) -> None:
         """
         Initialize a new text adventure game, based on the data in the given file, setting starting location of game
         at the given initial location ID.
@@ -79,7 +79,7 @@ class AdventureGame:
         # Suggested attributes (you can remove and track these differently if you wish to do so):
         self.current_location_id = initial_location_id  # game begins at this location
         self.ongoing = True  # whether the game is ongoing
-        self.player = player  # player obj in game
+        self.player = init_player  # player obj in game
 
     @staticmethod
     def _load_game_data(filename: str) -> tuple[dict[int, Location], list[Item]]:
@@ -114,7 +114,7 @@ class AdventureGame:
         else:
             return self._locations[loc_id]
 
-    def get_item(self, item_name: str) -> item:
+    def get_item(self, item_name: str) -> Item:
         """
         return items whose name is item_name, return "" if not found
         """
@@ -195,10 +195,10 @@ if __name__ == "__main__":
             # ENTER YOUR CODE BELOW to handle other menu commands (remember to use helper functions as appropriate)
             if choice == 'look':
                 print("user command: look")
-                print(location.long_description+"\n")
+                print(location.long_description + "\n")
             if choice == 'inventory':
                 print("user command: inventory")
-                print(str(game.player.inventory)+"\n")
+                print(str(game.player.inventory) + "\n")
             if choice == 'score':
                 print("user command: score")
                 print(str(game.player.curr_score()) + "\n")
