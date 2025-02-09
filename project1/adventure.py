@@ -150,6 +150,10 @@ if __name__ == "__main__":
     menu = ["look", "inventory", "score", "undo", "log", "quit"]  # Regular menu options available at each location
     choice = None
 
+    location = game.get_location()
+    event = Event(location.id_num, location.brief_description, copy.deepcopy(game.player))
+    game_log.add_event(event, location.brief_description)
+
     # Note: You may modify the code below as needed; the following starter code is just a suggestion
     while game.ongoing:
         # Note: If the loop body is getting too long, you should split the body up into helper functions
@@ -186,8 +190,8 @@ if __name__ == "__main__":
             print("That was an invalid option; try again.")
             choice = input("\nEnter action: ").lower().strip()
 
-        event = Event(location.id_num, location.brief_description, copy.deepcopy(game.player), choice)
-        game_log.add_event(event)
+        event = Event(location.id_num, location.brief_description, copy.deepcopy(game.player))
+        game_log.add_event(event, choice)
 
         print("========")
         print("You decided to:", choice)

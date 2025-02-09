@@ -106,7 +106,8 @@ class EventList:
         else:
             event.prev = self.last
             self.last.next = event
-            self.last.next_command = command
+            # self.last.next_command = command
+            event.next_command = command
 
         self.last = event
 
