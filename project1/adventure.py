@@ -141,7 +141,7 @@ if __name__ == "__main__":
     # game flow and logic
     # 1 initiate every information and game itself
     # default time provided: 200    ***
-    time = 200
+    time = 100
     curr_time = 0
     player = Player(time)
 
@@ -254,5 +254,5 @@ if __name__ == "__main__":
             game_log.add_event(event, choice)
 
     # ending: print score of game
-    print("you win this game!" if game.player.check_win() else "you lose, try next time")
+    print("you win this game!" if game.player.check_win() else "you lose, you don't done your assignment on time!")
     print(game.player.final_score(curr_time))
