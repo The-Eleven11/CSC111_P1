@@ -106,10 +106,10 @@ class EventList:
         else:
             event.prev = self.last
             self.last.next = event
-            self.last.next_command = command
+            # self.last.next_command = command
+            event.next_command = command
 
         self.last = event
-
 
     def remove_last_event(self) -> None:
         """Remove the last event from this event list.
