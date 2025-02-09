@@ -226,7 +226,7 @@ if __name__ == "__main__":
             # Handle non-menu actions
             # TODO: Add in code to deal with special locations (e.g. puzzles) as needed for your game
             if choice.__contains__("go"):
-                conditional_item = [x.nsme for x in game.player.inventory]
+                conditional_item = [x.name for x in game.player.inventory]
                 if all(item in conditional_item for item in location.items):
                     # move fit condition
                     result = location.available_commands[choice]
