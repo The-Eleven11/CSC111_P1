@@ -170,7 +170,7 @@ if __name__ == "__main__":
             location.visited = True
 
         # Display possible actions at this location
-        print("What to do? Choose from: look, inventory, score, undo, log, quit")
+        print("\nWhat to do? Choose from: look, inventory, score, undo, log, quit")
         print("At this location, you can also:")
         for action in location.available_commands:
             print("-", action)
@@ -227,8 +227,8 @@ if __name__ == "__main__":
                     print("ops, you may need below items to move to this area")
                     print([item for item in location.items if item not in game.player.inventory])
             # TODO: Add in code to deal with actions which do not change the location (e.g. taking or using an item)
-            else:
-                game.player.inventory.add(game.get_item(choice[5 | len(choice)]))
+            else :
+                game.player.inventory.append(game.get_item(choice[5 : len(choice)]))
             curr_time += 1
             print()
             # related to go some places
