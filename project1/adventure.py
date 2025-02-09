@@ -18,6 +18,8 @@ please consult our Course Syllabus.
 This file is Copyright (c) 2025 CSC111 Teaching Team
 """
 from __future__ import annotations
+
+import copy
 import json
 from typing import Optional
 
@@ -153,13 +155,16 @@ if __name__ == "__main__":
         # Note: If the loop body is getting too long, you should split the body up into helper functions
         # for better organization. Part of your marks will be based on how well-organized your code is.
 
-        location = game.get_location(game.current_location_id)
+        # location = game.get_location(game.current_location_id)
+        location = game.get_location()
 
         # TODO: Add new Event to game log to represent current game location
         #  Note that the <choice> variable should be the command which led to this event
         # YOUR CODE HERE
-        event = Event(location.id_num, location.brief_description, game.player)
-        game_log.add_event(event)
+
+        # event = Event(location.id_num, location.brief_description, copy.deepcopy(game.player))
+        # game_log.add_event(event)
+
         # TODO: Depending on whether or not it's been visited before,
         #  print either full description (first time visit) or brief description (every subsequent visit) of location
         # YOUR CODE HERE
@@ -181,6 +186,9 @@ if __name__ == "__main__":
             print("That was an invalid option; try again.")
             choice = input("\nEnter action: ").lower().strip()
 
+        event = Event(location.id_num, location.brief_description, copy.deepcopy(game.player), choice)
+        game_log.add_event(event)
+
         print("========")
         print("You decided to:", choice)
 
@@ -193,13 +201,13 @@ if __name__ == "__main__":
             # ENTER YOUR CODE BELOW to handle other menu commands (remember to use helper functions as appropriate)
             if choice == 'look':
                 print("user command: look")
-                print(location.long_description)
+                print(location.long_description+"\n")
             if choice == 'inventory':
                 print("user command: inventory")
-                print(game.player.inventory)
+                print(str(game.player.inventory)+"\n")
             if choice == 'score':
                 print("user command: score")
-                print(game.player.curr_score())
+                print(str(game.player.curr_score()) + "\n")
             if choice == 'undo':
                 if curr_time == 0:
                     # must have at least one step done
@@ -228,7 +236,7 @@ if __name__ == "__main__":
                     print([item for item in location.items if item not in game.player.inventory])
             # TODO: Add in code to deal with actions which do not change the location (e.g. taking or using an item)
             else:
-                game.player.inventory.add(game.get_item(choice[5:len(choice)]))
+                game.player.inventory.append(game.get_item(choice[5:len(choice)]))
             curr_time += 1
             print()
             # related to go some places
